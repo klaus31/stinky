@@ -1,0 +1,16 @@
+{
+  "name": "stinky",
+  "description": "stinky",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "express": "4.13.4"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "bower": "cd src && bower install"
+  },
+  "author": "klaus31",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/klaus31/stinky"
+}

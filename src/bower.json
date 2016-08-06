@@ -1,0 +1,8 @@
+{
+  "name": "stinky",
+  "version": "0.0.0",
+  "dependencies": {
+    "phaser": "2.6.1"
+  },
+  "devDependencies": {}
+}
