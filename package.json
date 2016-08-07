@@ -4,11 +4,13 @@
   "dependencies": {
   },
   "devDependencies": {
-    "express": "4.13.4"
+    "express": "4.13.4",
+    "js-beautify": "1.6.3"
   },
   "scripts": {
     "start": "node src/app.js",
-    "bower": "cd src && bower install"
+    "bower": "cd src && bower install",
+    "beautify": "etc/beautify.sh"
   },
   "author": "klaus31",
   "license": "UNLICENSED",
