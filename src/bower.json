@@ -4,5 +4,21 @@
   "dependencies": {
     "phaser": "2.6.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "bower.json",
+    "CHANGELOG.md",
+    "docs",
+    "filters",
+    "node_modules",
+    "package.json",
+    "README.md",
+    "resources",
+    "src",
+    "tasks",
+    "test",
+    "typescript"
+  ]
 }
