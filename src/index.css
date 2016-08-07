@@ -4,4 +4,16 @@ body {
   background: white;
   color: black;
   font-family: monospace;
+  background: rgb(240, 255, 255);
+}
+
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -400px;
+  margin-top: -300px;
+  border-color: black;
+  border-width: 1px 3px 3px 1px;
+  border-style: solid;
 }
