@@ -3,6 +3,7 @@ var ground;
 var platforms;
 var player;
 var killerThings;
+var scoreText;
 
 const KEY_BACKGROUND = 'ground';
 const KEY_MUD = 'mud';
@@ -30,6 +31,10 @@ var create = function() {
     platforms.enableBody = true;
     killerThings = game.add.group();
     killerThings.enableBody = true;
+    scoreText = game.add.text(16, 16, 'Found: 0/1', {
+      fontSize: '16px',
+      fill: '#000'
+    });
   }
 
   var createGround = function() {
@@ -107,12 +112,14 @@ var update = function() {
   var updateCollectedThings = function() {
     game.physics.arcade.overlap(player, weapons, function(player, weapon) {
       weapon.kill();
+      scoreText.text = 'Found 1/1';
     }, null, this);
   }
 
   var updatePlayerKilled = function() {
     game.physics.arcade.overlap(player, killerThings, function(player) {
       player.kill();
+      scoreText.text = 'Player died';
     }, null, this);
   }
 
