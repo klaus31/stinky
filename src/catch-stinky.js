@@ -16,7 +16,7 @@ var preload = function() {
   game.load.image(KEY_BACKGROUND, 'assets/bg.png');
   game.load.image(KEY_CROSS, 'assets/cross.png');
   game.load.image(KEY_MUD, 'assets/mud.png');
-  game.load.image(KEY_WEAPON, 'assets/weapon.png');
+  game.load.image(KEY_WEAPON, 'assets/stinky.png');
   game.load.image(KEY_FIRE, 'assets/fire.png');
   game.load.spritesheet(KEY_SMILEY, 'assets/smiley.png', 32, 48);
   cursors = game.input.keyboard.createCursorKeys();
