@@ -12,9 +12,10 @@ var countStinkiesShot = 0;
 var countShot = 0;
 var scoreText;
 
-var calculateScoreText = function() {
-  var rate = countShot ? (countStinkiesShot * 100 / countShot).toFixed(2) + ' %' : '-';
-  return 'Shots: ' + countShot + ' | Hits: ' + countStinkiesShot + ' | Rate: ' + rate;
+var calculateScoreText = function(hit) {
+  var rate = countShot ? Math.floor(countStinkiesShot * 100 / countShot) + '%' : '';
+  var rateSymbol = countShot ? (hit ? '↗' : '↘') : '';
+  return '🔫 ' + countShot + '   💩 ' + countStinkiesShot + '   ' + rateSymbol + ' ' + rate;
 }
 
 var preload = function() {
@@ -25,14 +26,16 @@ var preload = function() {
 var click = function(pointer) {
   var i = sprites.stinkies.length;
   countShot++;
+  var hit = false;
   while (i--) {
     var bodies = game.physics.p2.hitTest(pointer.position, [sprites.stinkies[i].body]);
     if (bodies.length) {
       sprites.stinkies[i].shot = true;
       countStinkiesShot++;
+      hit = true;
     }
   }
-  scoreText.text = calculateScoreText();
+  scoreText.text = calculateScoreText(hit);
 }
 
 var release = function(pointer) {}
