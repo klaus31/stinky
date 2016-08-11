@@ -17,7 +17,7 @@ var calculateScoreText = function() {
 
 var preload = function() {
   game.load.image(keys.background, 'assets/bg.png');
-  game.load.spritesheet(keys.stinky, 'assets/stinky.png', 32, 48);
+  game.load.spritesheet(keys.stinky, 'assets/stinky.png', 30, 30);
 };
 
 var click = function(pointer) {
@@ -56,6 +56,7 @@ var create = function() {
   var createStinky = function() {
     var posX = Math.floor(Math.random() * 801);
     var stinky = game.add.sprite(posX, 0, keys.stinky);
+    stinky.animations.add('infinite', [0, 1, 2, 1], 10, true);
     game.physics.p2.enable(stinky, false);
     sprites.stinkies.push(stinky);
   };
@@ -65,7 +66,8 @@ var create = function() {
 };
 
 var update = function() {
-
+  var i = sprites.stinkies.length;
+  while(i--) sprites.stinkies[i].animations.play('infinite');
 };
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
