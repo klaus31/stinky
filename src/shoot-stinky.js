@@ -8,11 +8,13 @@ var keys = {
 };
 
 var mouseBody;
-var stinkiesShot = 0;
+var countStinkiesShot = 0;
+var countShot = 0;
 var scoreText;
 
 var calculateScoreText = function() {
-  return 'Stinkies shot: ' + stinkiesShot;
+  var rate = countShot ? (countStinkiesShot * 100 / countShot).toFixed(2) + ' %' : '-';
+  return 'Shots: ' + countShot + ' | Hits: ' + countStinkiesShot + ' | Rate: ' + rate;
 }
 
 var preload = function() {
@@ -22,21 +24,20 @@ var preload = function() {
 
 var click = function(pointer) {
   var i = sprites.stinkies.length;
-  while(i--){
-    var bodies = game.physics.p2.hitTest(pointer.position, [ sprites.stinkies[i].body ]);
-    if(bodies.length) {
-      sprites.stinkies[i].kill();
-      stinkiesShot++;
-      scoreText.text = calculateScoreText();
+  countShot++;
+  while (i--) {
+    var bodies = game.physics.p2.hitTest(pointer.position, [sprites.stinkies[i].body]);
+    if (bodies.length) {
+      sprites.stinkies[i].shot = true;
+      countStinkiesShot++;
     }
   }
+  scoreText.text = calculateScoreText();
 }
 
-var release = function(pointer) {
-}
+var release = function(pointer) {}
 
-var move = function(pointer, x, y, isDown) {
-}
+var move = function(pointer, x, y, isDown) {}
 
 var create = function() {
 
@@ -57,6 +58,7 @@ var create = function() {
     var posX = Math.floor(Math.random() * 801);
     var stinky = game.add.sprite(posX, 0, keys.stinky);
     stinky.animations.add('infinite', [0, 1, 2, 1], 10, true);
+    stinky.animations.add('die', [3, 4, 5, 6, 7, 8, 9], 10, true);
     game.physics.p2.enable(stinky, false);
     sprites.stinkies.push(stinky);
   };
@@ -65,9 +67,26 @@ var create = function() {
   window.setInterval(createStinky, 3000);
 };
 
+var animationSpeed = 5;
+
 var update = function() {
   var i = sprites.stinkies.length;
-  while(i--) sprites.stinkies[i].animations.play('infinite');
+  while (i--) {
+    if (sprites.stinkies[i].shot) {
+      sprites.stinkies[i].stinkiesDieSteps = sprites.stinkies[i].stinkiesDieSteps || 0;
+      if (sprites.stinkies[i].stinkiesDieSteps < 6 * animationSpeed) {
+        if (sprites.stinkies[i].stinkiesDieSteps % animationSpeed == 0) {
+          sprites.stinkies[i].animations.play('die');
+        }
+        sprites.stinkies[i].stinkiesDieSteps++;
+      } else {
+        sprites.stinkies[i].kill();
+        sprites.stinkies.splice(i, 1);
+      }
+    } else {
+      sprites.stinkies[i].animations.play('infinite');
+    }
+  }
 };
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
