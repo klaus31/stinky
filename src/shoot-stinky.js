@@ -4,38 +4,56 @@ var sprites = {
 
 var keys = {
   stinky: 'stinky',
-  background: 'background'
+  background: 'background',
+  buttonGo: 'buttonGo'
 };
 
+var stinkiesAvailable = 50;
 var mouseBody;
+var countStinkiesThrown = 0;
 var countStinkiesShot = 0;
 var countShot = 0;
 var scoreText;
+var buttonGo;
+
+var getRandomInt = function(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 var calculateScoreText = function(hit) {
-  var rate = countShot ? Math.floor(countStinkiesShot * 100 / countShot) + '%' : '';
-  var rateSymbol = countShot ? (hit ? '↗' : '↘') : '';
-  return '🔫 ' + countShot + '   💩 ' + countStinkiesShot + '   ' + rateSymbol + ' ' + rate;
+  var result = '📍 ' + countShot + '   ';
+  result += '💩 ' + (stinkiesAvailable - countStinkiesThrown) + '   ';
+  result += '🚮 ' + countStinkiesShot + '        ';
+  if (countShot) {
+    result += '🚮 📍 ' + (hit ? '↗' : '↘') + ' ' + Math.floor(countStinkiesShot * 100 / countShot) + '%' + '       ';
+    result += '💩 📍 ' + (hit ? '↗' : '↘') + ' ' + Math.floor(countStinkiesThrown * 100 / countShot) + '%' + '   ';
+  }
+  return result;
 }
 
 var preload = function() {
   game.load.image(keys.background, 'assets/bg.png');
+  game.load.spritesheet(keys.buttonGo, 'assets/go.png', 200, 30);
   game.load.spritesheet(keys.stinky, 'assets/stinky.png', 30, 30);
 };
 
 var click = function(pointer) {
-  var i = sprites.stinkies.length;
-  countShot++;
-  var hit = false;
-  while (i--) {
-    var bodies = game.physics.p2.hitTest(pointer.position, [sprites.stinkies[i].body]);
-    if (bodies.length) {
-      sprites.stinkies[i].shot = true;
-      countStinkiesShot++;
-      hit = true;
+  if (pointer.position.x > 200 || pointer.position.y < game.world.height - 20) {
+    countShot++;
+    var hit = false;
+    var i = sprites.stinkies.length;
+    while (i--) {
+      var bodies = game.physics.p2.hitTest(pointer.position, [sprites.stinkies[i].body]);
+      if (bodies.length) {
+        sprites.stinkies[i].shot = true;
+        countStinkiesShot++;
+        hit = true;
+      }
     }
+    scoreText.text = calculateScoreText(hit);
   }
-  scoreText.text = calculateScoreText(hit);
 }
 
 var release = function(pointer) {}
@@ -45,7 +63,6 @@ var move = function(pointer, x, y, isDown) {}
 var create = function() {
 
   var createSystem = function() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.add.sprite(0, 0, keys.background);
     game.input.onDown.add(click, this);
@@ -56,24 +73,34 @@ var create = function() {
       fill: '#000'
     });
     game.physics.p2.gravity.y = 100;
-    game.physics.p2.restitution = 0.8;
   };
 
   var createStinky = function() {
     var posX = 20;
-    var posY = 300;
+    var posY = getRandomInt(100, 500);
     var stinky = game.add.sprite(posX, posY, keys.stinky);
     game.physics.p2.enable(stinky, false);
-    // game.physics.arcade.enable(stinky);
-    stinky.body.velocity.x = 200;
-    stinky.body.velocity.y = -100;
+    stinky.body.collideWorldBounds = false;
+    stinky.body.velocity.x = getRandomInt(100, 400);
+    stinky.body.velocity.y = getRandomInt(0, -300);
     stinky.animations.add('infinite', [0, 1, 2, 1], 10, true);
     stinky.animations.add('die', [3, 4, 5, 6, 7, 8, 9], 10, true);
     sprites.stinkies.push(stinky);
   };
 
+  var createGoButton = function(actionOnClick) {
+    var posX = 0;
+    var posY = game.world.height - 20;
+    var actionOnClickWrap = function() {
+      countStinkiesThrown++;
+      actionOnClick();
+    }
+    buttonGo = game.add.button(posX, posY, keys.buttonGo, actionOnClickWrap, this, 2, 1, 0);
+    game.physics.p2.enable(buttonGo, false);
+  };
+
   createSystem();
-  createStinky();
+  createGoButton(createStinky);
 };
 
 var animationSpeed = 5;
@@ -81,19 +108,20 @@ var animationSpeed = 5;
 var update = function() {
   var i = sprites.stinkies.length;
   while (i--) {
-    if (sprites.stinkies[i].shot) {
-      sprites.stinkies[i].stinkiesDieSteps = sprites.stinkies[i].stinkiesDieSteps || 0;
-      if (sprites.stinkies[i].stinkiesDieSteps < 6 * animationSpeed) {
-        if (sprites.stinkies[i].stinkiesDieSteps % animationSpeed == 0) {
-          sprites.stinkies[i].animations.play('die');
+    var stinky = sprites.stinkies[i];
+    if (stinky.shot) {
+      stinky.stinkiesDieSteps = stinky.stinkiesDieSteps || 0;
+      if (stinky.stinkiesDieSteps < 6 * animationSpeed) {
+        if (stinky.stinkiesDieSteps % animationSpeed == 0) {
+          stinky.animations.play('die');
         }
-        sprites.stinkies[i].stinkiesDieSteps++;
+        stinky.stinkiesDieSteps++;
       } else {
-        sprites.stinkies[i].kill();
+        stinky.kill();
         sprites.stinkies.splice(i, 1);
       }
     } else {
-      sprites.stinkies[i].animations.play('infinite');
+      stinky.animations.play('infinite');
     }
   }
 };
