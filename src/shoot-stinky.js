@@ -61,18 +61,12 @@ var click = function(pointer) {
   scoreText.text = calculateScoreText();
 }
 
-var release = function(pointer) {}
-
-var move = function(pointer, x, y, isDown) {}
-
 var create = function() {
 
   var createSystem = function() {
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.add.sprite(0, 0, keys.background);
     game.input.onDown.add(click, this);
-    game.input.onUp.add(release, this);
-    game.input.addMoveCallback(move, this);
     scoreText = game.add.text(16, 16, calculateScoreText(), textstyle);
     game.physics.p2.gravity.y = 100;
   };
@@ -130,6 +124,7 @@ var update = function() {
     delete buttonGo;
     game.add.sprite(0, 0, keys.background);
     game.add.text(16, 16, calculateScoreText(), textstyle).text = createResultText();
+    game.input.onDown.removeAll();
   } else {
     while (i--) {
       var stinky = sprites.stinkies[i];
