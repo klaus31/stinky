@@ -2,19 +2,28 @@ var sprites = {
   stinkies: []
 };
 
+var textstyle = {
+  fontSize: '16px',
+  fill: '#000'
+};
+
 var keys = {
   stinky: 'stinky',
   background: 'background',
   buttonGo: 'buttonGo'
 };
 
-var stinkiesAvailable = 50;
+var stinkiesAvailable = 10;
 var mouseBody;
-var countStinkiesThrown = 0;
-var countStinkiesShot = 0;
-var countShot = 0;
+var countShotHitsStinky = 0;
+var countShotOnStinky = 0;
+var countStinkiesCreated = 0;
 var scoreText;
 var buttonGo;
+
+var countStinkiesLeft = function() {
+  return stinkiesAvailable - countStinkiesCreated;
+}
 
 var getRandomInt = function(min, max) {
   min = Math.ceil(min);
@@ -22,14 +31,10 @@ var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var calculateScoreText = function(hit) {
-  var result = '📍 ' + countShot + '   ';
-  result += '💩 ' + (stinkiesAvailable - countStinkiesThrown) + '   ';
-  result += '🚮 ' + countStinkiesShot + '        ';
-  if (countShot) {
-    result += '🚮 📍 ' + (hit ? '↗' : '↘') + ' ' + Math.floor(countStinkiesShot * 100 / countShot) + '%' + '       ';
-    result += '💩 📍 ' + (hit ? '↗' : '↘') + ' ' + Math.floor(countStinkiesThrown * 100 / countShot) + '%' + '   ';
-  }
+var calculateScoreText = function() {
+  var result = '📍 ' + countShotOnStinky + '   ';
+  result += '💩 ' + countStinkiesLeft() + '   ';
+  result += '🚮 ' + countShotHitsStinky;
   return result;
 }
 
@@ -40,20 +45,20 @@ var preload = function() {
 };
 
 var click = function(pointer) {
+  var hit = false;
   if (pointer.position.x > 200 || pointer.position.y < game.world.height - 20) {
-    countShot++;
-    var hit = false;
+    countShotOnStinky++;
     var i = sprites.stinkies.length;
     while (i--) {
       var bodies = game.physics.p2.hitTest(pointer.position, [sprites.stinkies[i].body]);
       if (bodies.length) {
         sprites.stinkies[i].shot = true;
-        countStinkiesShot++;
+        ++countShotHitsStinky;
         hit = true;
       }
     }
-    scoreText.text = calculateScoreText(hit);
   }
+  scoreText.text = calculateScoreText();
 }
 
 var release = function(pointer) {}
@@ -68,10 +73,7 @@ var create = function() {
     game.input.onDown.add(click, this);
     game.input.onUp.add(release, this);
     game.input.addMoveCallback(move, this);
-    scoreText = game.add.text(16, 16, calculateScoreText(), {
-      fontSize: '16px',
-      fill: '#000'
-    });
+    scoreText = game.add.text(16, 16, calculateScoreText(), textstyle);
     game.physics.p2.gravity.y = 100;
   };
 
@@ -92,8 +94,9 @@ var create = function() {
     var posX = 0;
     var posY = game.world.height - 20;
     var actionOnClickWrap = function() {
-      countStinkiesThrown++;
+      ++countStinkiesCreated;
       actionOnClick();
+      scoreText.text = calculateScoreText();
     }
     buttonGo = game.add.button(posX, posY, keys.buttonGo, actionOnClickWrap, this, 2, 1, 0);
     game.physics.p2.enable(buttonGo, false);
@@ -103,25 +106,47 @@ var create = function() {
   createGoButton(createStinky);
 };
 
+var calculateTotalFinalPoints = function() {
+  var rateHit = countShotHitsStinky / stinkiesAvailable * 65;
+  var rateShotsNeeded = (countShotOnStinky ? countShotHitsStinky / countShotOnStinky : 0) * 35;
+  return rateHit + rateShotsNeeded;
+};
+
+var createResultText = function() {
+  var result = 'No stinky left! \r\n';
+  result += 'You shoot ' + countShotOnStinky + ' times on Stinkies!\r\n';
+  result += 'You hit ' + countShotHitsStinky + ' of ' + stinkiesAvailable + ' Stinkies!\r\n';
+  result += '-----------------------------------------------\r\n';
+  result += 'TOTAL: ' + Math.floor(calculateTotalFinalPoints()) + ' %';
+  return result;
+};
+
 var animationSpeed = 5;
 
 var update = function() {
   var i = sprites.stinkies.length;
-  while (i--) {
-    var stinky = sprites.stinkies[i];
-    if (stinky.shot) {
-      stinky.stinkiesDieSteps = stinky.stinkiesDieSteps || 0;
-      if (stinky.stinkiesDieSteps < 6 * animationSpeed) {
-        if (stinky.stinkiesDieSteps % animationSpeed == 0) {
-          stinky.animations.play('die');
+  if (countStinkiesLeft() <= -1) {
+    game.physics.p2.destroy(buttonGo);
+    delete buttonGo;
+    game.add.sprite(0, 0, keys.background);
+    game.add.text(16, 16, calculateScoreText(), textstyle).text = createResultText();
+  } else {
+    while (i--) {
+      var stinky = sprites.stinkies[i];
+      if (stinky.shot) {
+        stinky.stinkiesDieSteps = stinky.stinkiesDieSteps || 0;
+        if (stinky.stinkiesDieSteps < 6 * animationSpeed) {
+          if (stinky.stinkiesDieSteps % animationSpeed == 0) {
+            stinky.animations.play('die');
+          }
+          stinky.stinkiesDieSteps++;
+        } else {
+          stinky.kill();
+          sprites.stinkies.splice(i, 1);
         }
-        stinky.stinkiesDieSteps++;
       } else {
-        stinky.kill();
-        sprites.stinkies.splice(i, 1);
+        stinky.animations.play('infinite');
       }
-    } else {
-      stinky.animations.play('infinite');
     }
   }
 };
