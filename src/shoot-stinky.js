@@ -55,19 +55,25 @@ var create = function() {
       fontSize: '16px',
       fill: '#000'
     });
+    game.physics.p2.gravity.y = 100;
+    game.physics.p2.restitution = 0.8;
   };
 
   var createStinky = function() {
-    var posX = Math.floor(Math.random() * 801);
-    var stinky = game.add.sprite(posX, 0, keys.stinky);
+    var posX = 20;
+    var posY = 300;
+    var stinky = game.add.sprite(posX, posY, keys.stinky);
+    game.physics.p2.enable(stinky, false);
+    // game.physics.arcade.enable(stinky);
+    stinky.body.velocity.x = 200;
+    stinky.body.velocity.y = -100;
     stinky.animations.add('infinite', [0, 1, 2, 1], 10, true);
     stinky.animations.add('die', [3, 4, 5, 6, 7, 8, 9], 10, true);
-    game.physics.p2.enable(stinky, false);
     sprites.stinkies.push(stinky);
   };
 
   createSystem();
-  window.setInterval(createStinky, 3000);
+  createStinky();
 };
 
 var animationSpeed = 5;
