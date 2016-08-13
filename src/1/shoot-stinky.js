@@ -162,11 +162,11 @@ var calculateTotalFinalPoints = function() {
 };
 
 var createResultText = function() {
-  var result = '\r\n\r\nNo stinky left! \r\n';
-  result += 'You shoot ' + countShotOnStinky + ' times on Stinkies!\r\n';
-  result += 'You hit ' + countShotHitsStinky + ' of ' + stinkiesAvailable + ' Stinkies!\r\n';
-  result += '-----------------------------------------------\r\n';
-  result += 'TOTAL: ' + Math.floor(calculateTotalFinalPoints()) + ' %';
+  var result = '\r\n\r\nThx for playing! \r\n\r\n';
+  result += 'Shoot ' + countShotOnStinky + ' times on Stinkies!\r\n';
+  result += 'Hit ' + countShotHitsStinky + ' of ' + stinkiesAvailable + ' Stinkies!\r\n';
+  result += '――――――――――――――――――――――\r\n';
+  result += 'Total Score: ' + Math.floor(calculateTotalFinalPoints()) + ' %';
   return result;
 };
 

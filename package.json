@@ -8,8 +8,8 @@
     "js-beautify": "1.6.3"
   },
   "scripts": {
-    "start": "node src/app.js",
-    "bower": "cd src && bower install",
+    "start": "node app.js",
+    "bower": "bower install",
     "beautify": "etc/beautify.sh"
   },
   "author": "klaus31",
