@@ -90,7 +90,7 @@ var create = function() {
       //  Being mp3 files these take time to decode, so we can't play them instantly
       //  Using setDecodedCallback we can be notified when they're ALL ready for use.
       //  The audio files could decode in ANY order, we can never be sure which it'll be.
-      game.sound.setDecodedCallback([ sounds.stinkyShot.audio, sounds.stinkyMissed.audio, sounds.stinkyCreated.audio ], function(){}, this);
+      // game.sound.setDecodedCallback([ sounds.stinkyShot.audio, sounds.stinkyMissed.audio, sounds.stinkyCreated.audio ], function(){}, this);
     }
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.add.sprite(0, 0, keys.background);
