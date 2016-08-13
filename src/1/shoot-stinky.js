@@ -11,6 +11,7 @@ var keys = {
   stinky: 'stinky',
   background: 'background',
   buttonGo: 'buttonGo',
+  buttonFinish: 'buttonFinish'
 };
 
 var sounds = {
@@ -55,7 +56,8 @@ var calculateScoreText = function() {
 
 var preload = function() {
   game.load.image(keys.background, 'bg.png');
-  game.load.spritesheet(keys.buttonGo, 'go.png', 200, 30);
+  game.load.spritesheet(keys.buttonGo, 'throw.png', 200, 20);
+  game.load.spritesheet(keys.buttonFinish, 'view-result.png', 200, 20);
   game.load.spritesheet(keys.stinky, 'stinky.png', 30, 30);
   game.load.audio(sounds.stinkyCreated.key, sounds.stinkyCreated.file);
   game.load.audio(sounds.stinkyMissed.key, sounds.stinkyMissed.file);
@@ -149,6 +151,15 @@ var animationSpeed = 5;
 
 var update = function() {
   var i = sprites.stinkies.length;
+  if(countStinkiesLeft() == 0) {
+    var actionOnClick = function() {
+      ++countStinkiesCreated; // hack - to get -1
+    }
+    var posX = 0;
+    var posY = game.world.height - 20;
+    var button = game.add.button(posX, posY, keys.buttonFinish, actionOnClick, this, 2, 1, 0);
+    game.physics.p2.enable(button, false);
+  }
   if (countStinkiesLeft() <= -1) {
     game.physics.p2.destroy(buttonGo);
     delete buttonGo;
