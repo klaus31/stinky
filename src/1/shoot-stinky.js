@@ -1,3 +1,16 @@
+var StinkyScreen = function() {
+  var width = window.innerWidth || document.documentElement.clientWidth || d.getElementsByTagName('body')[0].clientWidth;
+  var height = window.innerHeight || document.documentElement.clientHeight || d.getElementsByTagName('body')[0].clientHeight;
+  this.getWidth = function getWidth() {
+    return width;
+  }
+  this.getHeight = function getHeight() {
+    return height;
+  }
+}
+
+var stinkyScreen = new StinkyScreen();
+
 var sprites = {
   stinkies: []
 };
@@ -55,7 +68,8 @@ var calculateScoreText = function() {
 }
 
 var preload = function() {
-  game.load.image(keys.background, 'bg.png');
+  game.load.image('mud-pattern', 'mud-pattern.png');
+  game.load.image('clouds', 'clouds.png');
   game.load.spritesheet(keys.buttonGo, 'throw.png', 200, 20);
   game.load.spritesheet(keys.buttonFinish, 'view-result.png', 200, 20);
   game.load.spritesheet(keys.stinky, 'stinky.png', 30, 30);
@@ -88,14 +102,11 @@ var create = function() {
       sounds.stinkyShot.audio = game.add.audio(sounds.stinkyShot.key);
       sounds.stinkyMissed.audio = game.add.audio(sounds.stinkyMissed.key);
       sounds.stinkyCreated.audio = game.add.audio(sounds.stinkyCreated.key);
-
-      //  Being mp3 files these take time to decode, so we can't play them instantly
-      //  Using setDecodedCallback we can be notified when they're ALL ready for use.
-      //  The audio files could decode in ANY order, we can never be sure which it'll be.
-      // game.sound.setDecodedCallback([ sounds.stinkyShot.audio, sounds.stinkyMissed.audio, sounds.stinkyCreated.audio ], function(){}, this);
     }
     game.physics.startSystem(Phaser.Physics.P2JS);
-    game.add.sprite(0, 0, keys.background);
+    game.stage.backgroundColor = "#AAFFFF";
+    game.add.tileSprite(0, game.world.height - 60, game.world.width,60, 'mud-pattern');
+    game.add.tileSprite(0, 0, game.world.width,60, 'clouds');
     game.input.onDown.add(click, this);
     scoreText = game.add.text(16, 16, calculateScoreText(), textstyle);
     game.physics.p2.gravity.y = 100;
@@ -105,7 +116,7 @@ var create = function() {
   var createStinky = function() {
     sounds.stinkyCreated.audio.play();
     var posX = 20;
-    var posY = getRandomInt(100, 500);
+    var posY = getRandomInt(100, game.world.height - 100);
     var stinky = game.add.sprite(posX, posY, keys.stinky);
     game.physics.p2.enable(stinky, false);
     stinky.body.collideWorldBounds = false;
@@ -139,7 +150,7 @@ var calculateTotalFinalPoints = function() {
 };
 
 var createResultText = function() {
-  var result = 'No stinky left! \r\n';
+  var result = '\r\n\r\nNo stinky left! \r\n';
   result += 'You shoot ' + countShotOnStinky + ' times on Stinkies!\r\n';
   result += 'You hit ' + countShotHitsStinky + ' of ' + stinkiesAvailable + ' Stinkies!\r\n';
   result += '-----------------------------------------------\r\n';
@@ -148,7 +159,7 @@ var createResultText = function() {
 };
 
 var animationSpeed = 5;
-
+var buttonFinish;
 var update = function() {
   var i = sprites.stinkies.length;
   if(countStinkiesLeft() == 0) {
@@ -157,14 +168,17 @@ var update = function() {
     }
     var posX = 0;
     var posY = game.world.height - 20;
-    var button = game.add.button(posX, posY, keys.buttonFinish, actionOnClick, this, 2, 1, 0);
-    game.physics.p2.enable(button, false);
+    buttonGo.kill();
+    buttonFinish = game.add.button(posX, posY, keys.buttonFinish, actionOnClick, this, 2, 1, 0);
+    game.physics.p2.enable(buttonFinish, false);
   }
   if (countStinkiesLeft() <= -1) {
-    game.physics.p2.destroy(buttonGo);
-    delete buttonGo;
-    game.add.sprite(0, 0, keys.background);
-    game.add.text(16, 16, calculateScoreText(), textstyle).text = createResultText();
+    buttonFinish.kill();
+    while (i--) {
+      sprites.stinkies[i].kill();
+    }
+    scoreText.kill();
+    game.add.text(16, 16, createResultText(), textstyle);
     game.input.onDown.removeAll();
   } else {
     while (i--) {
@@ -190,7 +204,7 @@ var update = function() {
   }
 };
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {
   preload: preload,
   create: create,
   update: update

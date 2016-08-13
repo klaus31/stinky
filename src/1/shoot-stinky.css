@@ -1,19 +1,5 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-body {
   background: black;
-}
-
-canvas {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -400px;
-  margin-top: -300px;
-  border-color: white;
-  border-width: 5px;
-  border-style: outset;
 }
