@@ -9,6 +9,17 @@ var StinkyScreen = function() {
   }
 }
 
+var WebFontConfig = {
+    active: function() { game.time.events.add(Phaser.Timer.SECOND, createScoreBar, this); },
+    google: {
+      families: ['Indie Flower']
+    }
+};
+
+var createScoreBar = function() {
+  scoreText = game.add.text(game.world.width - 200, game.world.height - 35, calculateScoreText(), textstyle);
+};
+
 var stinkyScreen = new StinkyScreen();
 
 var sprites = {
@@ -16,8 +27,9 @@ var sprites = {
 };
 
 var textstyle = {
-  fontSize: '16px',
-  fill: '#000'
+  fontSize: '24px',
+  fill: '#FFF',
+  font: 'Indie Flower'
 };
 
 var keys = {
@@ -76,6 +88,7 @@ var preload = function() {
   game.load.audio(sounds.stinkyCreated.key, sounds.stinkyCreated.file);
   game.load.audio(sounds.stinkyMissed.key, sounds.stinkyMissed.file);
   game.load.audio(sounds.stinkyShot.key, sounds.stinkyShot.file);
+  game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 };
 
 var click = function(pointer) {
@@ -108,7 +121,6 @@ var create = function() {
     game.add.tileSprite(0, game.world.height - 60, game.world.width,60, 'mud-pattern');
     game.add.tileSprite(0, 0, game.world.width,60, 'clouds');
     game.input.onDown.add(click, this);
-    scoreText = game.add.text(16, 16, calculateScoreText(), textstyle);
     game.physics.p2.gravity.y = 100;
     createSounds();
   };
@@ -178,6 +190,7 @@ var update = function() {
       sprites.stinkies[i].kill();
     }
     scoreText.kill();
+    textstyle.fill = '#000';
     game.add.text(16, 16, createResultText(), textstyle);
     game.input.onDown.removeAll();
   } else {
