@@ -10,7 +10,22 @@ var textstyle = {
 var keys = {
   stinky: 'stinky',
   background: 'background',
-  buttonGo: 'buttonGo'
+  buttonGo: 'buttonGo',
+};
+
+var sounds = {
+  stinkyCreated : {
+    key: 'wind',
+    file: 'wind-back-draught.mp3'
+  },
+  stinkyMissed : {
+    key: 'fartSilent',
+    file: 'fart-silent.mp3'
+  },
+  stinkyShot : {
+    key: 'fartShot',
+    file: 'fart-very-hard.mp3'
+  }
 };
 
 var stinkiesAvailable = 10;
@@ -42,10 +57,12 @@ var preload = function() {
   game.load.image(keys.background, 'bg.png');
   game.load.spritesheet(keys.buttonGo, 'go.png', 200, 30);
   game.load.spritesheet(keys.stinky, 'stinky.png', 30, 30);
+  game.load.audio(sounds.stinkyCreated.key, sounds.stinkyCreated.file);
+  game.load.audio(sounds.stinkyMissed.key, sounds.stinkyMissed.file);
+  game.load.audio(sounds.stinkyShot.key, sounds.stinkyShot.file);
 };
 
 var click = function(pointer) {
-  var hit = false;
   if (pointer.position.x > 200 || pointer.position.y < game.world.height - 20) {
     countShotOnStinky++;
     var i = sprites.stinkies.length;
@@ -54,7 +71,8 @@ var click = function(pointer) {
       if (bodies.length) {
         sprites.stinkies[i].shot = true;
         ++countShotHitsStinky;
-        hit = true;
+      } else {
+        sounds.stinkyMissed.audio.play();
       }
     }
   }
@@ -64,14 +82,26 @@ var click = function(pointer) {
 var create = function() {
 
   var createSystem = function() {
+    var createSounds = function() {
+      sounds.stinkyShot.audio = game.add.audio(sounds.stinkyShot.key);
+      sounds.stinkyMissed.audio = game.add.audio(sounds.stinkyMissed.key);
+      sounds.stinkyCreated.audio = game.add.audio(sounds.stinkyCreated.key);
+
+      //  Being mp3 files these take time to decode, so we can't play them instantly
+      //  Using setDecodedCallback we can be notified when they're ALL ready for use.
+      //  The audio files could decode in ANY order, we can never be sure which it'll be.
+      game.sound.setDecodedCallback([ sounds.stinkyShot.audio, sounds.stinkyMissed.audio, sounds.stinkyCreated.audio ], function(){}, this);
+    }
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.add.sprite(0, 0, keys.background);
     game.input.onDown.add(click, this);
     scoreText = game.add.text(16, 16, calculateScoreText(), textstyle);
     game.physics.p2.gravity.y = 100;
+    createSounds();
   };
 
   var createStinky = function() {
+    sounds.stinkyCreated.audio.play();
     var posX = 20;
     var posY = getRandomInt(100, 500);
     var stinky = game.add.sprite(posX, posY, keys.stinky);
@@ -130,6 +160,9 @@ var update = function() {
       var stinky = sprites.stinkies[i];
       if (stinky.shot) {
         stinky.stinkiesDieSteps = stinky.stinkiesDieSteps || 0;
+        if(stinky.stinkiesDieSteps === 0) {
+          sounds.stinkyShot.audio.play();
+        }
         if (stinky.stinkiesDieSteps < 6 * animationSpeed) {
           if (stinky.stinkiesDieSteps % animationSpeed == 0) {
             stinky.animations.play('die');
