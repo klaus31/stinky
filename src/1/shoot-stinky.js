@@ -39,9 +39,9 @@ var calculateScoreText = function() {
 }
 
 var preload = function() {
-  game.load.image(keys.background, 'assets/bg.png');
-  game.load.spritesheet(keys.buttonGo, 'assets/go.png', 200, 30);
-  game.load.spritesheet(keys.stinky, 'assets/stinky.png', 30, 30);
+  game.load.image(keys.background, 'bg.png');
+  game.load.spritesheet(keys.buttonGo, 'go.png', 200, 30);
+  game.load.spritesheet(keys.stinky, 'stinky.png', 30, 30);
 };
 
 var click = function(pointer) {

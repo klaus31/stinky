@@ -13,12 +13,12 @@ const KEY_WEAPON = 'weapon';
 const KEY_CROSS = 'cross';
 
 var preload = function() {
-  game.load.image(KEY_BACKGROUND, 'assets/bg.png');
-  game.load.image(KEY_CROSS, 'assets/cross.png');
-  game.load.image(KEY_MUD, 'assets/mud.png');
-  game.load.image(KEY_WEAPON, 'assets/stinky.png');
-  game.load.image(KEY_FIRE, 'assets/fire.png');
-  game.load.spritesheet(KEY_SMILEY, 'assets/smiley.png', 32, 48);
+  game.load.image(KEY_BACKGROUND, 'bg.png');
+  game.load.image(KEY_CROSS, 'cross.png');
+  game.load.image(KEY_MUD, 'mud.png');
+  game.load.image(KEY_WEAPON, 'stinky.png');
+  game.load.image(KEY_FIRE, 'fire.png');
+  game.load.spritesheet(KEY_SMILEY, 'smiley.png', 32, 48);
   cursors = game.input.keyboard.createCursorKeys();
 }
 

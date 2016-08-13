@@ -2,9 +2,9 @@
   "name": "stinky",
   "description": "stinky",
   "dependencies": {
+    "express": "4.13.4"
   },
   "devDependencies": {
-    "express": "4.13.4",
     "js-beautify": "1.6.3"
   },
   "scripts": {
