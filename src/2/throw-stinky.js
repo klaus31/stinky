@@ -95,16 +95,12 @@ var StinkySystem = function() {
   var stinkyThrow = new Throw();
 
   var preload = function() {
-    stinky.preload();
     toilett.preload();
+    stinky.preload();
   };
 
   var onGameInputDown = function(pointer) {
-    if (stinky.isHit(pointer)) {
-      stinkyThrow.start(pointer);
-    } else {
-      stinkyThrow.abort();
-    }
+    stinkyThrow.start(pointer);
   };
 
   var onGameInputUp = function(pointer) {
@@ -120,8 +116,8 @@ var StinkySystem = function() {
     game.physics.p2.gravity.y = gravity.y;
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
-    stinky.create();
     toilett.create();
+    stinky.create();
   };
 
   var update = function() {};
