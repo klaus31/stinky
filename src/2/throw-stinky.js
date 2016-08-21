@@ -7,6 +7,7 @@ var Toilett = function() {
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
+
   this.create = function() {
     var posX = game.world.width - width;
     var posY = game.world.height / 2;
@@ -15,25 +16,70 @@ var Toilett = function() {
 
 };
 
+var Throw = function() {
+  var start = false;
+  var end = false;
+
+  this.start = function(pointer) {
+    start = {
+      x: pointer.position.x - 0,
+      y: pointer.position.y - 0
+    };
+  }
+
+  this.abort = function() {
+    start = false;
+    end = false;
+  }
+
+  this.isStarted = function() {
+    return !!start;
+  }
+
+  this.end = function(pointer) {
+    end = {
+      x: pointer.position.x - 0,
+      y: pointer.position.y - 0
+    };
+  }
+
+  this.doThrow = function(sprite) {
+    sprite.body.velocity.x = end.x - start.x;
+    sprite.body.velocity.y = end.y - start.y;
+    start = false;
+    end = false;
+  }
+};
+
 var Stinky = function() {
   var width = 30;
   var height = 30;
   var name = 'stinky';
   var file = name + '.png';
+  var sprite;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
+
+  this.isHit = function(pointer) {
+    if (!sprite) throw 'sprite not created yet';
+    var bodies = game.physics.p2.hitTest(pointer.position, [sprite.body]);
+    return !!bodies.length;
+  };
+
   this.create = function() {
     var posX = 50;
     var posY = game.world.height / 2;
-    var stinky = game.add.sprite(posX, posY, name);
-    game.physics.p2.enable(stinky);
-    stinky.body.collideWorldBounds = true;
+    sprite = game.add.sprite(posX, posY, name);
+    game.physics.p2.enable(sprite);
+    sprite.body.collideWorldBounds = true;
     // FIXME animation geht nicht
-    stinky.animations.add('infinite', [0, 1, 2, 1], 10, true);
-    stinky.body.velocity.x = 200;
-    stinky.body.velocity.y = -200;
+    sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
+  };
+
+  this.throw = function(aThrow) {
+    aThrow.doThrow(sprite);
   };
 
 };
@@ -46,16 +92,34 @@ var StinkySystem = function() {
   var gravity = {};
   gravity.y = 100;
   var backgroundColor = '#FF77DD';
+  var stinkyThrow = new Throw();
 
   var preload = function() {
     stinky.preload();
     toilett.preload();
   };
 
+  var onGameInputDown = function(pointer) {
+    if (stinky.isHit(pointer)) {
+      stinkyThrow.start(pointer);
+    } else {
+      stinkyThrow.abort();
+    }
+  };
+
+  var onGameInputUp = function(pointer) {
+    if (stinkyThrow.isStarted()) {
+      stinkyThrow.end(pointer);
+      stinky.throw(stinkyThrow);
+    }
+  };
+
   var create = function() {
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.stage.backgroundColor = backgroundColor;
     game.physics.p2.gravity.y = gravity.y;
+    game.input.onDown.add(onGameInputDown, this);
+    game.input.onUp.add(onGameInputUp, this);
     stinky.create();
     toilett.create();
   };
