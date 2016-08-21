@@ -1,6 +1,6 @@
 var WebFontConfig = {
   active: function() {
-    // FIXME rein: game.time.events.add(Phaser.Timer.SECOND, createScoreBar, this); // FIXME does not work offline
+    game.time.events.add(Phaser.Timer.SECOND, createScoreBar, this); // FIXME does not work offline
   },
   google: {
     families: ['Indie Flower']

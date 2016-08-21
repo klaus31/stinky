@@ -4,6 +4,8 @@ var Toilett = function() {
   var name = 'toilet';
   var file = name + '.png';
   var sprite;
+  var thingToFlushDown;
+  var speedForFlushDown = 2;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
@@ -23,6 +25,29 @@ var Toilett = function() {
       sprite.position.y + height > position.y;
   };
 
+  this.flushDown = function(garbage) {
+    if(!garbage.kill) throw 'garbage must implement kill';
+    if(!garbage.setPosition) throw 'garbage must implement setPosition';
+    if(!garbage.stopMoving) throw 'garbage must implement stopMoving';
+    if(!thingToFlushDown) {
+      garbage.stopMoving();
+      garbage.setPosition(sprite.x+22, sprite.y);
+      thingToFlushDown = garbage;
+    }
+  };
+
+  this.update = function() {
+    if(thingToFlushDown){
+      var currentPosition = thingToFlushDown.getPosition();
+      var isCompletelyFlushDown = currentPosition.y > sprite.position.y + (height / 2);
+      if(isCompletelyFlushDown) {
+        thingToFlushDown.kill();
+        delete thingToFlushDown;
+      } else {
+        thingToFlushDown.setPosition(currentPosition.x, currentPosition.y + 2);
+      }
+    }
+  };
 };
 
 var Throw = function() {
@@ -61,10 +86,11 @@ var Throw = function() {
 };
 
 var Stinky = function() {
-  var width = 30;
-  var height = 30;
-  var name = 'stinky';
-  var file = name + '.png';
+  const width = 30;
+  const height = 30;
+  const gravityY = 100;
+  const name = 'stinky';
+  const file = name + '.png';
   var sprite;
 
   this.preload = function() {
@@ -75,7 +101,7 @@ var Stinky = function() {
     var posX = 50;
     var posY = game.world.height / 2;
     sprite = game.add.sprite(posX, posY, name);
-    game.physics.p2.enable(sprite);
+    game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;
     // FIXME animation geht nicht
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
@@ -83,11 +109,24 @@ var Stinky = function() {
 
   this.throw = function(aThrow) {
     if(!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
+    sprite.body.gravity.y = gravityY;
     aThrow.doThrow(sprite);
   };
 
   this.getPosition = function() {
     return sprite.position;
+  };
+
+  this.stopMoving = function() {
+    sprite.moves = false;
+    sprite.body.gravity.y = 0;
+    sprite.body.velocity.x = 0;
+    sprite.body.velocity.y = 0;
+  }
+
+  this.setPosition = function(x,y) {
+    sprite.x = x;
+    sprite.y = y;
   };
 
   this.kill = function() {
@@ -102,7 +141,7 @@ var StinkySystem = function() {
   var stinky = new Stinky();
   var toilet = new Toilett();
   var gravity = {};
-  gravity.y = 100;
+  gravity.y = 0;
   var backgroundColor = '#FF77DD';
   var stinkyThrow = new Throw();
 
@@ -134,9 +173,9 @@ var StinkySystem = function() {
 
   var update = function() {
     if(toilet.isHit(stinky.getPosition())) {
-      stinky.kill();
-      // TODO runterspülsound und ani
+      toilet.flushDown(stinky);
     }
+    toilet.update();
   };
 
   var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {
