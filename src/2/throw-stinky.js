@@ -3,6 +3,7 @@ var Toilett = function() {
   var height = 100;
   var name = 'toilett';
   var file = name + '.png';
+  var sprite;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
@@ -11,7 +12,15 @@ var Toilett = function() {
   this.create = function() {
     var posX = game.world.width - width;
     var posY = game.world.height / 2;
-    game.add.sprite(posX, posY, name);
+    sprite = game.add.sprite(posX, posY, name);
+  };
+
+  this.isHit = function(position) {
+    if (!sprite) throw 'sprite not created yet';
+    return sprite.position.x < position.x &&
+      sprite.position.x + width > position.x &&
+      sprite.position.y < position.y &&
+      sprite.position.y + height > position.y;
   };
 
 };
@@ -62,12 +71,6 @@ var Stinky = function() {
     game.load.spritesheet(name, file, width, height);
   }
 
-  this.isHit = function(pointer) {
-    if (!sprite) throw 'sprite not created yet';
-    var bodies = game.physics.p2.hitTest(pointer.position, [sprite.body]);
-    return !!bodies.length;
-  };
-
   this.create = function() {
     var posX = 50;
     var posY = game.world.height / 2;
@@ -79,8 +82,17 @@ var Stinky = function() {
   };
 
   this.throw = function(aThrow) {
+    if(!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
     aThrow.doThrow(sprite);
   };
+
+  this.getPosition = function() {
+    return sprite.position;
+  };
+
+  this.kill = function() {
+    sprite.kill();
+  }
 
 };
 
@@ -120,7 +132,12 @@ var StinkySystem = function() {
     stinky.create();
   };
 
-  var update = function() {};
+  var update = function() {
+    if(toilett.isHit(stinky.getPosition())) {
+      stinky.kill();
+      // TODO runterspülsound und ani
+    }
+  };
 
   var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {
     preload: preload,
