@@ -1,7 +1,7 @@
 var Toilett = function() {
   var width = 100;
   var height = 100;
-  var name = 'toilett';
+  var name = 'toilet';
   var file = name + '.png';
   var sprite;
 
@@ -100,14 +100,14 @@ var StinkySystem = function() {
 
   var stinkyScreen = new StinkyScreen();
   var stinky = new Stinky();
-  var toilett = new Toilett();
+  var toilet = new Toilett();
   var gravity = {};
   gravity.y = 100;
   var backgroundColor = '#FF77DD';
   var stinkyThrow = new Throw();
 
   var preload = function() {
-    toilett.preload();
+    toilet.preload();
     stinky.preload();
   };
 
@@ -128,12 +128,12 @@ var StinkySystem = function() {
     game.physics.p2.gravity.y = gravity.y;
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
-    toilett.create();
+    toilet.create();
     stinky.create();
   };
 
   var update = function() {
-    if(toilett.isHit(stinky.getPosition())) {
+    if(toilet.isHit(stinky.getPosition())) {
       stinky.kill();
       // TODO runterspülsound und ani
     }
