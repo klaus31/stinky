@@ -4,7 +4,7 @@ var Toilett = function() {
   var name = 'toilett';
   var file = name + '.png';
 
-  this.preload = function(){
+  this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
   this.create = function() {
@@ -21,7 +21,7 @@ var Stinky = function() {
   var name = 'stinky';
   var file = name + '.png';
 
-  this.preload = function(){
+  this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
   this.create = function() {
@@ -43,6 +43,9 @@ var StinkySystem = function() {
   var stinkyScreen = new StinkyScreen();
   var stinky = new Stinky();
   var toilett = new Toilett();
+  var gravity = {};
+  gravity.y = 100;
+  var backgroundColor = '#FF77DD';
 
   var preload = function() {
     stinky.preload();
@@ -51,14 +54,13 @@ var StinkySystem = function() {
 
   var create = function() {
     game.physics.startSystem(Phaser.Physics.P2JS);
-    game.stage.backgroundColor = "#FF77DD";
-    game.physics.p2.gravity.y = 100;
+    game.stage.backgroundColor = backgroundColor;
+    game.physics.p2.gravity.y = gravity.y;
     stinky.create();
     toilett.create();
   };
 
-  var update = function() {
-  };
+  var update = function() {};
 
   var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {
     preload: preload,

@@ -1,10 +1,10 @@
 var WebFontConfig = {
-    active: function() {
-        // FIXME rein: game.time.events.add(Phaser.Timer.SECOND, createScoreBar, this); // FIXME does not work offline
-    },
-    google: {
-      families: ['Indie Flower']
-    }
+  active: function() {
+    // FIXME rein: game.time.events.add(Phaser.Timer.SECOND, createScoreBar, this); // FIXME does not work offline
+  },
+  google: {
+    families: ['Indie Flower']
+  }
 };
 
 var createScoreBar = function() {
@@ -31,15 +31,15 @@ var keys = {
 };
 
 var sounds = {
-  stinkyCreated : {
+  stinkyCreated: {
     key: 'wind',
     file: 'wind-back-draught.mp3'
   },
-  stinkyMissed : {
+  stinkyMissed: {
     key: 'fartSilent',
     file: 'fart-silent.mp3'
   },
-  stinkyShot : {
+  stinkyShot: {
     key: 'fartShot',
     file: 'fart-very-hard.mp3'
   }
@@ -110,8 +110,8 @@ var create = function() {
     }
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.stage.backgroundColor = "#AAFFFF";
-    game.add.tileSprite(0, game.world.height - 60, game.world.width,60, 'mud-pattern');
-    game.add.tileSprite(0, 0, game.world.width,60, 'clouds');
+    game.add.tileSprite(0, game.world.height - 60, game.world.width, 60, 'mud-pattern');
+    game.add.tileSprite(0, 0, game.world.width, 60, 'clouds');
     game.input.onDown.add(click, this);
     game.physics.p2.gravity.y = 100;
     createSounds();
@@ -166,7 +166,7 @@ var animationSpeed = 5;
 var buttonFinish;
 var update = function() {
   var i = sprites.stinkies.length;
-  if(countStinkiesLeft() == 0) {
+  if (countStinkiesLeft() == 0) {
     var actionOnClick = function() {
       ++countStinkiesCreated; // hack - to get -1
     }
@@ -190,7 +190,7 @@ var update = function() {
       var stinky = sprites.stinkies[i];
       if (stinky.shot) {
         stinky.stinkiesDieSteps = stinky.stinkiesDieSteps || 0;
-        if(stinky.stinkiesDieSteps === 0) {
+        if (stinky.stinkiesDieSteps === 0) {
           sounds.stinkyShot.audio.play();
         }
         if (stinky.stinkiesDieSteps < 6 * animationSpeed) {
