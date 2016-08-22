@@ -5,13 +5,28 @@ var Stinky = function() {
   const name = 'stinky';
   const file = name + '.png';
   var sprite;
+  var me = this;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
 
   this.update = function() {
-    sprite.animations.play('infinite');
+    if (hitWorldBounds()) {
+      me.explode();
+    }
+    if (sprite.animations.currentAnim.isFinished) {
+      me.kill();
+      me.create();
+    }
+  }
+
+  this.explode = function() {
+    sprite.animations.play('explode');
+  }
+
+  var hitWorldBounds = function() {
+    return sprite.body.blocked.up || sprite.body.blocked.right || sprite.body.blocked.down || sprite.body.blocked.left;
   }
 
   this.create = function() {
@@ -20,7 +35,10 @@ var Stinky = function() {
     sprite = game.add.sprite(posX, posY, name);
     game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;
+    sprite.body.bounce.set(.3);
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
+    sprite.animations.play('infinite');
+    sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
   };
 
   this.throw = function(aThrow) {
