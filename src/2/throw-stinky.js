@@ -3,18 +3,27 @@ var Toilett = function() {
   var height = 100;
   var name = 'toilet';
   var file = name + '.png';
+  var nameOpen = 'toilet-open';
+  var fileOpen = nameOpen + '.png';
   var sprite;
   var thingToFlushDown;
   var speedForFlushDown = 2;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
+    game.load.image(nameOpen, fileOpen, width, height);
   }
 
   this.create = function() {
     var posX = game.world.width - width;
     var posY = game.world.height / 2;
     sprite = game.add.sprite(posX, posY, name);
+  };
+
+  this.postcreate = function() {
+    var posX = game.world.width - width;
+    var posY = game.world.height / 2;
+    game.add.sprite(posX, posY, nameOpen);
   };
 
   this.isHit = function(position) {
@@ -169,6 +178,7 @@ var StinkySystem = function() {
     game.input.onUp.add(onGameInputUp, this);
     toilet.create();
     stinky.create();
+    toilet.postcreate();
   };
 
   var update = function() {
