@@ -6,9 +6,12 @@ var StinkySystem = function() {
   var gravity = {};
   gravity.y = 0;
   var backgroundColor = '#FF77DD';
+  var backgroundImageName = 'toilet-paper-bg';
+  var backgroundImageFile = backgroundImageName + '.png';
   var stinkyThrow = new Throw();
 
   var preload = function() {
+    game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
     toilet.preload();
     stinky.preload();
   };
@@ -27,6 +30,7 @@ var StinkySystem = function() {
   var create = function() {
     game.physics.startSystem(Phaser.Physics.P2JS);
     game.stage.backgroundColor = backgroundColor;
+    game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
     game.physics.p2.gravity.y = gravity.y;
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
