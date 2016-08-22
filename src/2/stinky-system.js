@@ -44,6 +44,7 @@ var StinkySystem = function() {
       toilet.flushDown(stinky);
     }
     toilet.update();
+    stinky.update();
   };
 
   var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {

@@ -10,13 +10,16 @@ var Stinky = function() {
     game.load.spritesheet(name, file, width, height);
   }
 
+  this.update = function() {
+    sprite.animations.play('infinite');
+  }
+
   this.create = function() {
     var posX = 50;
     var posY = game.world.height / 2;
     sprite = game.add.sprite(posX, posY, name);
     game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;
-    // FIXME animation geht nicht
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
   };
 
