@@ -35,21 +35,21 @@ var Toilett = function() {
   };
 
   this.flushDown = function(garbage) {
-    if(!garbage.kill) throw 'garbage must implement kill';
-    if(!garbage.setPosition) throw 'garbage must implement setPosition';
-    if(!garbage.stopMoving) throw 'garbage must implement stopMoving';
-    if(!thingToFlushDown) {
+    if (!garbage.kill) throw 'garbage must implement kill';
+    if (!garbage.setPosition) throw 'garbage must implement setPosition';
+    if (!garbage.stopMoving) throw 'garbage must implement stopMoving';
+    if (!thingToFlushDown) {
       garbage.stopMoving();
-      garbage.setPosition(sprite.x+22, sprite.y);
+      garbage.setPosition(sprite.x + 22, sprite.y);
       thingToFlushDown = garbage;
     }
   };
 
   this.update = function() {
-    if(thingToFlushDown){
+    if (thingToFlushDown) {
       var currentPosition = thingToFlushDown.getPosition();
       var isCompletelyFlushDown = currentPosition.y > sprite.position.y + (height / 2);
-      if(isCompletelyFlushDown) {
+      if (isCompletelyFlushDown) {
         thingToFlushDown.kill();
         delete thingToFlushDown;
       } else {

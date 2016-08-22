@@ -24,7 +24,7 @@ var Stinky = function() {
   };
 
   this.throw = function(aThrow) {
-    if(!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
+    if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
     sprite.body.gravity.y = gravityY;
     aThrow.doThrow(sprite);
   };
@@ -40,7 +40,7 @@ var Stinky = function() {
     sprite.body.velocity.y = 0;
   }
 
-  this.setPosition = function(x,y) {
+  this.setPosition = function(x, y) {
     sprite.x = x;
     sprite.y = y;
   };
