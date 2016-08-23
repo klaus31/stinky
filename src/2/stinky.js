@@ -39,17 +39,17 @@ var Stinky = function() {
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
     sprite.animations.play('infinite');
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
-  };
+  }
 
   this.throw = function(aThrow) {
     if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
     sprite.body.gravity.y = gravityY;
     aThrow.doThrow(sprite);
-  };
+  }
 
   this.getPosition = function() {
     return sprite.position;
-  };
+  }
 
   this.stopMoving = function() {
     sprite.moves = false;
@@ -61,10 +61,16 @@ var Stinky = function() {
   this.setPosition = function(x, y) {
     sprite.x = x;
     sprite.y = y;
-  };
+  }
 
   this.kill = function() {
     sprite.kill();
+  }
+
+  this.recreate = function() {
+    me.kill();
+    me.stopMoving();
+    me.create();
   }
 
 };

@@ -26,22 +26,22 @@ var Toilett = function() {
     game.add.sprite(posX, posY, nameOpen);
   };
 
-  this.isHit = function(position) {
+  this.isHitInto = function(position) {
     if (!sprite) throw 'sprite not created yet';
-    return sprite.position.x < position.x &&
-      sprite.position.x + width > position.x &&
+    return sprite.position.x + 5 < position.x &&
+      sprite.position.x + width - 30 > position.x &&
       sprite.position.y < position.y &&
-      sprite.position.y + height > position.y;
+      sprite.position.y + height - 30 > position.y;
   };
 
-  this.flushDown = function(garbage) {
-    if (!garbage.kill) throw 'garbage must implement kill';
-    if (!garbage.setPosition) throw 'garbage must implement setPosition';
-    if (!garbage.stopMoving) throw 'garbage must implement stopMoving';
+  this.flushDown = function(thingToFlush) {
+    if (!thingToFlush.recreate) throw 'thingToFlush must implement recreate'; // XXX was doof ist
+    if (!thingToFlush.setPosition) throw 'thingToFlush must implement setPosition';
+    if (!thingToFlush.stopMoving) throw 'thingToFlush must implement stopMoving';
     if (!thingToFlushDown) {
-      garbage.stopMoving();
-      garbage.setPosition(sprite.x + 22, sprite.y);
-      thingToFlushDown = garbage;
+      thingToFlush.stopMoving();
+      thingToFlush.setPosition(sprite.x + 22, sprite.y);
+      thingToFlushDown = thingToFlush;
     }
   };
 
@@ -50,7 +50,7 @@ var Toilett = function() {
       var currentPosition = thingToFlushDown.getPosition();
       var isCompletelyFlushDown = currentPosition.y > sprite.position.y + (height / 2);
       if (isCompletelyFlushDown) {
-        thingToFlushDown.kill();
+        thingToFlushDown.recreate();
         delete thingToFlushDown;
       } else {
         thingToFlushDown.setPosition(currentPosition.x, currentPosition.y + 2);
