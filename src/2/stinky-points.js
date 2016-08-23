@@ -1,12 +1,23 @@
 var StinkyPoints = function() {
+
   var points = 0;
   var tries = 0;
+  var board = new Board();
+  var onIncrement;
+
   this.incrementPoints = function() {
     points++;
-    console.info('points: ' + points);
+    if(onIncrement)
+    onIncrement(tries, points);
   }
+
   this.incrementTries = function() {
     tries++;
-    console.info('tries: ' + tries);
+    if(onIncrement)
+    onIncrement(tries, points);
+  }
+
+  this.onIncrement = function(func) {
+    onIncrement = func;
   }
 };

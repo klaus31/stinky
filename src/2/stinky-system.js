@@ -10,9 +10,11 @@ var StinkySystem = function() {
   var backgroundImageFile = backgroundImageName + '.png';
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
+  var board = new Board();
 
   var preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
+    board.preload();
     toilet.preload();
     stinky.preload();
   };
@@ -35,6 +37,8 @@ var StinkySystem = function() {
     game.physics.p2.gravity.y = gravity.y;
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
+    stinkyPoints.onIncrement(board.updateScore);
+    board.create();
     toilet.create();
     stinky.create();
     stinky.onKilledAdd(stinkyPoints.incrementTries);
