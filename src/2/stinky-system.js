@@ -40,9 +40,14 @@ var StinkySystem = function() {
   };
 
   var update = function() {
-    if (!stinky.isBeenKilled() && toilet.isHitInto(stinky.getPosition())) {
-      stinky.markAsWillBeKilled();
-      toilet.flushDown(stinky);
+    if (!stinky.isBeingKilled()) {
+      if (toilet.isHit(stinky).into()) {
+        stinky.markAsWillBeKilled();
+        toilet.flushDown(stinky);
+      } else if (toilet.isHit(stinky).any()) {
+        stinky.markAsWillBeKilled();
+        stinky.explode();
+      }
     }
     toilet.update();
     stinky.update();

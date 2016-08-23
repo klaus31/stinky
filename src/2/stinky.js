@@ -7,18 +7,25 @@ var Stinky = function() {
   var sprite;
   var me = this;
   /* flag: true, if method kill will be called */
-  var isBeenKilled;
+  var isBeingKilled;
+
+  this.getWidth = function() {
+    return width;
+  }
+  this.getHeight = function() {
+    return height;
+  }
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
 
   this.markAsWillBeKilled = function() {
-    isBeenKilled = true;
+    isBeingKilled = true;
   }
 
-  this.isBeenKilled = function() {
-    return isBeenKilled;
+  this.isBeingKilled = function() {
+    return isBeingKilled;
   }
 
   this.update = function() {
@@ -43,7 +50,7 @@ var Stinky = function() {
   this.create = function() {
     var posX = 50;
     var posY = game.world.height / 2;
-    isBeenKilled = false;
+    isBeingKilled = false;
     sprite = game.add.sprite(posX, posY, name);
     game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;

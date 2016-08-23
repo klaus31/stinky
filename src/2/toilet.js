@@ -1,4 +1,5 @@
 var Toilett = function() {
+  var me = this;
   var width = 100;
   var height = 100;
   var name = 'toilet';
@@ -16,22 +17,47 @@ var Toilett = function() {
 
   this.create = function() {
     var posX = game.world.width - width;
-    var posY = game.world.height / 2;
+    var posY = game.world.height - height;
     sprite = game.add.sprite(posX, posY, name);
   };
 
   this.postcreate = function() {
     var posX = game.world.width - width;
-    var posY = game.world.height / 2;
+    var posY = game.world.height - height;
     game.add.sprite(posX, posY, nameOpen);
   };
 
-  this.isHitInto = function(position) {
+  this.isHit = function(thingThrown) {
     if (!sprite) throw 'sprite not created yet';
-    return sprite.position.x + 5 < position.x &&
-      sprite.position.x + width - 30 > position.x &&
-      sprite.position.y < position.y &&
-      sprite.position.y + height - 30 > position.y;
+    if (!thingThrown) throw 'thingThrown npe';
+    if (!thingThrown.getPosition) throw 'thingThrown must implement getPosition';
+    if (!thingThrown.getWidth) throw 'thingThrown must implement getWidth';
+    if (!thingThrown.getHeight) throw 'thingThrown must implement getHeight';
+    var position = thingThrown.getPosition();
+    var into = function() {
+      return sprite.position.x + 5 < position.x &&
+        sprite.position.x + width - 30 > position.x &&
+        sprite.position.y < position.y &&
+        sprite.position.y + height - 30 > position.y;
+    };
+    var any = function() {
+      return sprite.position.x < position.x + thingThrown.getWidth() &&
+        sprite.position.x + width > position.x &&
+        sprite.position.y < position.y + thingThrown.getHeight() &&
+        sprite.position.y + height > position.y &&
+        // not just whitespace:
+        ( sprite.position.x + 55 < position.x + thingThrown.getWidth() ||
+          sprite.position.y + 55 < position.y + thingThrown.getHeight());
+    }
+    return {
+      into: into,
+      any: any
+    }
+  }
+
+
+  this.isHitButNotInto = function(thingThrown) {
+    if (!sprite) throw 'sprite not created yet';
   };
 
   this.flushDown = function(thingToFlush) {
