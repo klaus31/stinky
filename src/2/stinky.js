@@ -61,13 +61,13 @@ var Stinky = function() {
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
     sprite.events.onKilled.add(recreate);
     var i = onKilledFuncs.length;
-    while(i--) me.onKilledAdd(onKilledFuncs[i]);
+    while (i--) me.onKilledAdd(onKilledFuncs[i]);
   }
 
   this.onKilledAdd = function(func) {
     sprite.events.onKilled.add(func);
-    if(!onKilledFuncs.includes(func))
-    onKilledFuncs.push(func);
+    if (!onKilledFuncs.includes(func))
+      onKilledFuncs.push(func);
   }
 
   this.throw = function(aThrow) {

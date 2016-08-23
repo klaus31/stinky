@@ -46,7 +46,7 @@ var Toilett = function() {
         sprite.position.y < position.y + thingThrown.getHeight() &&
         sprite.position.y + height > position.y &&
         // not just whitespace:
-        ( sprite.position.x + 55 < position.x + thingThrown.getWidth() ||
+        (sprite.position.x + 55 < position.x + thingThrown.getWidth() ||
           sprite.position.y + 55 < position.y + thingThrown.getHeight());
     }
     return {
