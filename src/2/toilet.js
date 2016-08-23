@@ -35,7 +35,7 @@ var Toilett = function() {
   };
 
   this.flushDown = function(thingToFlush) {
-    if (!thingToFlush.recreate) throw 'thingToFlush must implement recreate'; // XXX was doof ist
+    if (!thingToFlush.kill) throw 'thingToFlush must implement kill';
     if (!thingToFlush.setPosition) throw 'thingToFlush must implement setPosition';
     if (!thingToFlush.stopMoving) throw 'thingToFlush must implement stopMoving';
     if (!thingToFlushDown) {
@@ -50,8 +50,8 @@ var Toilett = function() {
       var currentPosition = thingToFlushDown.getPosition();
       var isCompletelyFlushDown = currentPosition.y > sprite.position.y + (height / 2);
       if (isCompletelyFlushDown) {
-        thingToFlushDown.recreate();
-        delete thingToFlushDown;
+        thingToFlushDown.kill();
+        thingToFlushDown = false;
       } else {
         thingToFlushDown.setPosition(currentPosition.x, currentPosition.y + 2);
       }

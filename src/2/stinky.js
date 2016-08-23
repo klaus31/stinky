@@ -6,18 +6,29 @@ var Stinky = function() {
   const file = name + '.png';
   var sprite;
   var me = this;
+  /* flag: true, if method kill will be called */
+  var isBeenKilled;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
   }
 
+  this.markAsWillBeKilled = function() {
+    isBeenKilled = true;
+  }
+
+  this.isBeenKilled = function() {
+    return isBeenKilled;
+  }
+
   this.update = function() {
     if (hitWorldBounds()) {
+      me.markAsWillBeKilled();
       me.explode();
     }
     if (sprite.animations.currentAnim.isFinished) {
-      me.kill();
-      me.create();
+      sprite.kill();
+      sprite.animations.currentAnim.isFinished = false;
     }
   }
 
@@ -32,6 +43,7 @@ var Stinky = function() {
   this.create = function() {
     var posX = 50;
     var posY = game.world.height / 2;
+    isBeenKilled = false;
     sprite = game.add.sprite(posX, posY, name);
     game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;
@@ -39,6 +51,7 @@ var Stinky = function() {
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
     sprite.animations.play('infinite');
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
+    sprite.events.onKilled.add(recreate);
   }
 
   this.throw = function(aThrow) {
@@ -67,8 +80,7 @@ var Stinky = function() {
     sprite.kill();
   }
 
-  this.recreate = function() {
-    me.kill();
+  var recreate = function() {
     me.stopMoving();
     me.create();
   }
