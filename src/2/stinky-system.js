@@ -9,6 +9,7 @@ var StinkySystem = function() {
   var backgroundImageName = 'toilet-paper-bg';
   var backgroundImageFile = backgroundImageName + '.png';
   var stinkyThrow = new Throw();
+  var stinkyPoints = new StinkyPoints();
 
   var preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
@@ -36,6 +37,7 @@ var StinkySystem = function() {
     game.input.onUp.add(onGameInputUp, this);
     toilet.create();
     stinky.create();
+    stinky.onKilledAdd(stinkyPoints.incrementTries);
     toilet.postcreate();
   };
 
@@ -44,6 +46,7 @@ var StinkySystem = function() {
       if (toilet.isHit(stinky).into()) {
         stinky.markAsWillBeKilled();
         toilet.flushDown(stinky);
+        stinkyPoints.incrementPoints();
       } else if (toilet.isHit(stinky).any()) {
         stinky.markAsWillBeKilled();
         stinky.explode();

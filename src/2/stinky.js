@@ -8,6 +8,7 @@ var Stinky = function() {
   var me = this;
   /* flag: true, if method kill will be called */
   var isBeingKilled;
+  var onKilledFuncs = [];
 
   this.getWidth = function() {
     return width;
@@ -59,6 +60,14 @@ var Stinky = function() {
     sprite.animations.play('infinite');
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
     sprite.events.onKilled.add(recreate);
+    var i = onKilledFuncs.length;
+    while(i--) me.onKilledAdd(onKilledFuncs[i]);
+  }
+
+  this.onKilledAdd = function(func) {
+    sprite.events.onKilled.add(func);
+    if(!onKilledFuncs.includes(func))
+    onKilledFuncs.push(func);
   }
 
   this.throw = function(aThrow) {
