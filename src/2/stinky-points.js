@@ -7,14 +7,14 @@ var StinkyPoints = function() {
 
   this.incrementPoints = function() {
     points++;
-    if(onIncrement)
-    onIncrement(tries, points);
+    if (onIncrement)
+      onIncrement(tries, points);
   }
 
   this.incrementTries = function() {
     tries++;
-    if(onIncrement)
-    onIncrement(tries, points);
+    if (onIncrement)
+      onIncrement(tries, points);
   }
 
   this.onIncrement = function(func) {

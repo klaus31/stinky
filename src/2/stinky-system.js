@@ -1,6 +1,5 @@
 var StinkySystem = function() {
 
-  var stinkyScreen = new StinkyScreen();
   var stinky = new Stinky();
   var toilet = new Toilett();
   var gravity = {};
@@ -11,12 +10,14 @@ var StinkySystem = function() {
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
+  var platforms = new Platforms();
 
   var preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
     board.preload();
     toilet.preload();
     stinky.preload();
+    platforms.preload();
   };
 
   var onGameInputDown = function(pointer) {
@@ -38,6 +39,7 @@ var StinkySystem = function() {
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
     stinkyPoints.onIncrement(board.updateScore);
+    platforms.create();
     board.create();
     toilet.create();
     stinky.create();
@@ -60,7 +62,7 @@ var StinkySystem = function() {
     stinky.update();
   };
 
-  var game = new Phaser.Game(stinkyScreen.getWidth(), stinkyScreen.getHeight(), Phaser.AUTO, '', {
+  var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {
     preload: preload,
     create: create,
     update: update

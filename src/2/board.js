@@ -1,7 +1,7 @@
 var Board = function() {
   var me = this;
-var countThrown;
-var countHit;
+  var countThrown;
+  var countHit;
   const width = 250;
   const height = 40;
   const name = 'board';

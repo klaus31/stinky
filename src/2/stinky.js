@@ -53,15 +53,15 @@ var Stinky = function() {
     var posY = game.world.height / 2;
     isBeingKilled = false;
     sprite = game.add.sprite(posX, posY, name);
-    game.physics.arcade.enable(sprite);
+    game.physics.enable(sprite);
     sprite.body.collideWorldBounds = true;
     sprite.body.bounce.set(.3);
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
-    sprite.animations.play('infinite');
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
     sprite.events.onKilled.add(recreate);
     var i = onKilledFuncs.length;
     while (i--) me.onKilledAdd(onKilledFuncs[i]);
+    sprite.animations.play('infinite');
   }
 
   this.onKilledAdd = function(func) {
