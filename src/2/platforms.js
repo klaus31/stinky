@@ -6,6 +6,7 @@ var Platforms = function() {
   this.preload = function() {
     game.load.tilemap('map', 'platforms.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('platform', 'platform.png');
+    game.load.image('wall', 'wall.png');
   }
 
   this.create = function() {
@@ -14,6 +15,7 @@ var Platforms = function() {
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('platform');
+    map.addTilesetImage('wall');
   }
 
   this.getLayer = function() {
