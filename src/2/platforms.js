@@ -1,5 +1,8 @@
 var Platforms = function() {
 
+  const ID_PLATFORM = 1;
+  const ID_WALL = 2;
+
   var map;
   var layer;
 
@@ -16,6 +19,10 @@ var Platforms = function() {
     game.physics.enable(layer);
     map.addTilesetImage('platform');
     map.addTilesetImage('wall');
+  }
+
+  this.onWallHit = function(func) {
+    map.setTileIndexCallback(ID_WALL, func, this);
   }
 
   this.getLayer = function() {

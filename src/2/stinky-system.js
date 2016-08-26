@@ -48,6 +48,7 @@ var StinkySystem = function() {
     stinky.create();
     stinky.onKilledAdd(stinkyPoints.incrementTries);
     toilet.postcreate();
+    platforms.onWallHit(stinky.explode);
   };
 
   var update = function() {

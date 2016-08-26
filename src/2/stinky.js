@@ -38,6 +38,7 @@ var Stinky = function() {
   }
 
   this.explode = function() {
+    me.stopMoving();
     var ani = sprite.animations.play('explode');
     ani.killOnComplete = true;
   }
