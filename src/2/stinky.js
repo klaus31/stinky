@@ -1,9 +1,10 @@
 var Stinky = function() {
+
   const width = 30;
   const height = 30;
-  const gravityY = 100;
   const name = 'stinky';
   const file = name + '.png';
+
   var sprite;
   var me = this;
   /* flag: true, if method kill will be called */
@@ -34,18 +35,18 @@ var Stinky = function() {
       me.markAsWillBeKilled();
       me.explode();
     }
-    if (sprite.animations.currentAnim.isFinished) {
-      sprite.kill();
-      sprite.animations.currentAnim.isFinished = false;
-    }
   }
 
   this.explode = function() {
-    sprite.animations.play('explode');
+    var ani = sprite.animations.play('explode');
+    ani.killOnComplete = true;
   }
 
   var hitWorldBounds = function() {
-    return sprite.body.blocked.up || sprite.body.blocked.right || sprite.body.blocked.down || sprite.body.blocked.left;
+    return sprite.position.x == 0 ||
+      sprite.position.y == 0 ||
+      sprite.body.blocked.right && sprite.position.x >= game.width - width - 10 ||
+      sprite.body.blocked.down && sprite.position.y >= game.height - height;
   }
 
   this.create = function() {
@@ -55,7 +56,6 @@ var Stinky = function() {
     sprite = game.add.sprite(posX, posY, name);
     game.physics.enable(sprite);
     sprite.body.collideWorldBounds = true;
-    sprite.body.bounce.set(.3);
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
     sprite.events.onKilled.add(recreate);
@@ -72,7 +72,6 @@ var Stinky = function() {
 
   this.throw = function(aThrow) {
     if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
-    sprite.body.gravity.y = gravityY;
     aThrow.doThrow(sprite);
   }
 
@@ -82,7 +81,6 @@ var Stinky = function() {
 
   this.stopMoving = function() {
     sprite.moves = false;
-    sprite.body.gravity.y = 0;
     sprite.body.velocity.x = 0;
     sprite.body.velocity.y = 0;
   }
@@ -100,5 +98,7 @@ var Stinky = function() {
     me.stopMoving();
     me.create();
   }
+
+  this.getSprite = function(){return sprite;}
 
 };

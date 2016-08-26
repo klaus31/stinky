@@ -2,8 +2,6 @@ var StinkySystem = function() {
 
   var stinky = new Stinky();
   var toilet = new Toilett();
-  var gravity = {};
-  gravity.y = 0;
   var backgroundColor = '#FF77DD';
   var backgroundImageName = 'toilet-paper-bg';
   var backgroundImageFile = backgroundImageName + '.png';
@@ -32,13 +30,17 @@ var StinkySystem = function() {
   };
 
   var create = function() {
-    game.physics.startSystem(Phaser.Physics.P2JS);
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    game.physics.arcade.gravity.y = 100;
     game.stage.backgroundColor = backgroundColor;
     game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
-    game.physics.p2.gravity.y = gravity.y;
+
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
+
     stinkyPoints.onIncrement(board.updateScore);
+
     platforms.create();
     board.create();
     toilet.create();
@@ -48,6 +50,15 @@ var StinkySystem = function() {
   };
 
   var update = function() {
+    game.physics.arcade.collide(stinky.getSprite(), platforms.getLayer());
+    // if (game.physics.p2.colKlide(stinky.getSprite(), platforms.getMap())) console.info('#######################'); // FIXME mach gut
+    /*
+
+    if(stinky.getSprite().body.collides(platforms.getBodies(), function(stinky, platform) {
+      console.info('-------------------_>'+stinky);
+    }));
+    */
+
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
         stinky.markAsWillBeKilled();
