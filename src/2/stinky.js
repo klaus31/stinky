@@ -99,6 +99,8 @@ var Stinky = function() {
     me.create();
   }
 
-  this.getSprite = function(){return sprite;}
+  this.getSprite = function() {
+    return sprite;
+  }
 
 };

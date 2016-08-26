@@ -26,8 +26,8 @@ var Throw = function() {
   }
 
   this.doThrow = function(sprite) {
-    sprite.body.velocity.x = end.x - start.x;
-    sprite.body.velocity.y = end.y - start.y;
+    sprite.body.velocity.x = (end.x - start.x) * 2;
+    sprite.body.velocity.y = (end.y - start.y) * 2;
     start = false;
     end = false;
   }

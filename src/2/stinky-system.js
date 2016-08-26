@@ -32,7 +32,7 @@ var StinkySystem = function() {
   var create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.physics.arcade.gravity.y = 100;
+    game.physics.arcade.gravity.y = 200;
     game.stage.backgroundColor = backgroundColor;
     game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
 
@@ -51,13 +51,6 @@ var StinkySystem = function() {
 
   var update = function() {
     game.physics.arcade.collide(stinky.getSprite(), platforms.getLayer());
-    // if (game.physics.p2.colKlide(stinky.getSprite(), platforms.getMap())) console.info('#######################'); // FIXME mach gut
-    /*
-
-    if(stinky.getSprite().body.collides(platforms.getBodies(), function(stinky, platform) {
-      console.info('-------------------_>'+stinky);
-    }));
-    */
 
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
