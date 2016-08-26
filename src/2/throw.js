@@ -3,27 +3,37 @@ var Throw = function() {
   var start = false;
   var end = false;
   var stinkyLine;
+  var offset;
 
   this.create = function() {
     stinkyLine = new StinkyLine();
   }
 
-  this.start = function(pointer) {
-    start = {
-      x: pointer.position.x - 0,
-      y: pointer.position.y - 0
-    };
+  this.start = function(pointer, subjectPosition) {
+    start = subjectPosition;
+    offset = {
+      x: pointer.x - subjectPosition.x,
+      y: pointer.y - subjectPosition.y
+    }
   }
 
   this.update = function() {
     if (start) {
-      stinkyLine.setTo(start, game.input.position);
+      stinkyLine.setTo(start, getEnd());
     }
+  }
+
+  var getEnd = function() {
+    return {
+      x: game.input.position.x - offset.x,
+      y: game.input.position.y - offset.y
+    };
   }
 
   this.abort = function() {
     start = false;
     end = false;
+    offset = false;
   }
 
   this.isStarted = function() {
@@ -31,10 +41,7 @@ var Throw = function() {
   }
 
   this.end = function(pointer) {
-    end = {
-      x: pointer.position.x - 0,
-      y: pointer.position.y - 0
-    };
+    end = getEnd();
   }
 
   this.doThrow = function(sprite) {
@@ -42,6 +49,7 @@ var Throw = function() {
     sprite.body.velocity.y = (end.y - start.y) * 2;
     start = false;
     end = false;
+    offset = false;
     stinkyLine.hide();
   }
 

@@ -20,7 +20,7 @@ var StinkySystem = function() {
   };
 
   var onGameInputDown = function(pointer) {
-    stinkyThrow.start(pointer);
+    stinkyThrow.start(pointer, stinky.getCenterPosition());
   };
 
   var onGameInputUp = function(pointer) {
