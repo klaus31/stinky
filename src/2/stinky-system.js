@@ -47,12 +47,19 @@ var StinkySystem = function() {
     toilet.create();
     stinky.create();
     stinky.onKilledAdd(stinkyPoints.incrementTries);
+    stinkyThrow.create();
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);
   };
 
+  var onGameInputHold = function(a, b) {
+    console.log(a);
+  }
+
   var update = function() {
     game.physics.arcade.collide(stinky.getSprite(), platforms.getLayer());
+
+    stinkyThrow.update();
 
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
@@ -71,10 +78,15 @@ var StinkySystem = function() {
     background.tilePosition.y -= 1;
   };
 
-  var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {
+  var render = function() {
+    stinkyThrow.render();
+  }
+
+  var game = new Phaser.Game(960, 600, Phaser.CANVAS, '', {
     preload: preload,
     create: create,
-    update: update
+    update: update,
+    render: render
   });
 
   this.getGame = function() {

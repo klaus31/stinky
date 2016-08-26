@@ -1,12 +1,24 @@
 var Throw = function() {
+
   var start = false;
   var end = false;
+  var stinkyLine;
+
+  this.create = function() {
+    stinkyLine = new StinkyLine();
+  }
 
   this.start = function(pointer) {
     start = {
       x: pointer.position.x - 0,
       y: pointer.position.y - 0
     };
+  }
+
+  this.update = function() {
+    if (start) {
+      stinkyLine.setTo(start, game.input.position);
+    }
   }
 
   this.abort = function() {
@@ -30,5 +42,10 @@ var Throw = function() {
     sprite.body.velocity.y = (end.y - start.y) * 2;
     start = false;
     end = false;
+    stinkyLine.hide();
+  }
+
+  this.render = function() {
+    stinkyLine.render();
   }
 };
