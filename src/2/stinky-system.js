@@ -2,6 +2,7 @@ var StinkySystem = function() {
 
   var stinky = new Stinky();
   var toilet = new Toilett();
+  var background;
   var backgroundColor = '#FF77DD';
   var backgroundImageName = 'toilet-paper-bg';
   var backgroundImageFile = backgroundImageName + '.png';
@@ -34,7 +35,7 @@ var StinkySystem = function() {
 
     game.physics.arcade.gravity.y = 200;
     game.stage.backgroundColor = backgroundColor;
-    game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
+    background = game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
 
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
@@ -64,6 +65,9 @@ var StinkySystem = function() {
     }
     toilet.update();
     stinky.update();
+
+    background.tilePosition.x -= 2;
+    background.tilePosition.y -= 1;
   };
 
   var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {

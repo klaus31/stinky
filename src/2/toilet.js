@@ -9,16 +9,19 @@ var Toilett = function() {
   var sprite;
   var thingToFlushDown;
   var speedForFlushDown = 2;
+  var soundFlush;
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
     game.load.image(nameOpen, fileOpen, width, height);
+    game.load.audio('toilet-flush', 'toilet-flush.mp3');
   }
 
   this.create = function() {
     var posX = game.world.width - width;
     var posY = game.world.height - height;
     sprite = game.add.sprite(posX, posY, name);
+    soundFlush = game.add.audio('toilet-flush');
   };
 
   this.postcreate = function() {
@@ -68,6 +71,7 @@ var Toilett = function() {
       thingToFlush.stopMoving();
       thingToFlush.setPosition(sprite.x + 22, sprite.y);
       thingToFlushDown = thingToFlush;
+      soundFlush.play();
     }
   };
 
