@@ -80,6 +80,13 @@ var Stinky = function() {
     return sprite.position;
   }
 
+  this.getCenterPosition = function() {
+    return {
+      x: sprite.position.x + width / 2,
+      y: sprite.position.y + height / 2
+    }
+  }
+
   this.stopMoving = function() {
     sprite.moves = false;
     sprite.body.velocity.x = 0;
