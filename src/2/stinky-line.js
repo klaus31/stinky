@@ -12,7 +12,7 @@ var StinkyLine = function() {
   }
 
   this.hide = function() {
-    line.setTo(0,0,0,0);
+    line.setTo(0, 0, 0, 0);
   }
 
 }
