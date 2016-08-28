@@ -27,6 +27,7 @@ var StinkySystem = function() {
     if (stinkyThrow.isStarted()) {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
+      game.physics.arcade.gravity.y = 200;
     }
   };
 
@@ -46,14 +47,21 @@ var StinkySystem = function() {
     board.create();
     toilet.create();
     stinky.create();
-    stinky.onKilledAdd(stinkyPoints.incrementTries);
+    stinky.onKilledAdd(onStinkyKilled);
     stinkyThrow.create();
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);
+    platforms.onGreenHit(onGreenHit);
   };
 
-  var onGameInputHold = function(a, b) {
-    console.log(a);
+  var onStinkyKilled = function() {
+    stinkyPoints.incrementTries();
+    game.physics.arcade.gravity.y = 200;
+  }
+
+  var onGreenHit = function() {
+    stinky.stopMoving();
+    game.physics.arcade.gravity.y = 0;
   }
 
   var update = function() {

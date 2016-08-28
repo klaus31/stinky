@@ -22,11 +22,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"platform.png",
+         "image":"green.png",
          "imageheight":15,
          "imagewidth":15,
          "margin":0,
-         "name":"platform",
+         "name":"green",
          "properties":
             {
 
@@ -35,7 +35,7 @@
          "tilecount":1,
          "tileheight":15,
          "tilewidth":15
-        }, 
+        },
         {
          "firstgid":2,
          "image":"wall.png",
