@@ -12,9 +12,9 @@ var Platforms = function() {
     game.load.image('wall', 'wall.png');
   }
 
-  this.create = function() {
+  this.create = function(layername) {
     map = game.add.tilemap('map');
-    layer = map.createLayer('layer-1');
+    layer = map.createLayer(layername);
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('green');

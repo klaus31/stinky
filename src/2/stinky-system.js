@@ -1,5 +1,7 @@
 var StinkySystem = function() {
 
+  const GRAVITY = 100;
+
   var stinky = new Stinky();
   var toilet = new Toilett();
   var background;
@@ -27,7 +29,7 @@ var StinkySystem = function() {
     if (stinkyThrow.isStarted()) {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
-      game.physics.arcade.gravity.y = 200;
+      game.physics.arcade.gravity.y = GRAVITY;
       stinkyPoints.onIncrement(board.updateScore);
       stinkyPoints.incrementTries();
     } else {
@@ -38,7 +40,7 @@ var StinkySystem = function() {
   var create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.physics.arcade.gravity.y = 200;
+    game.physics.arcade.gravity.y = GRAVITY;
     game.stage.backgroundColor = backgroundColor;
     background = game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
 
@@ -47,12 +49,13 @@ var StinkySystem = function() {
 
     stinkyPoints.onIncrement(board.updateScore);
 
-    platforms.create();
+//    platforms.create('4-trees');
+    platforms.create('green-floor');
     board.create();
     toilet.create();
     stinky.create({
       x: 138,
-      y: 415
+      y: 400
     });
     stinky.onKilledAdd(onStinkyKilled);
     stinkyThrow.create();
@@ -62,7 +65,7 @@ var StinkySystem = function() {
   };
 
   var onStinkyKilled = function() {
-    game.physics.arcade.gravity.y = 200;
+    game.physics.arcade.gravity.y = GRAVITY;
   }
 
   var onGreenHit = function() {
