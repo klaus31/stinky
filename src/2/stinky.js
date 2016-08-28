@@ -10,6 +10,9 @@ var Stinky = function() {
   /* flag: true, if method kill will be called */
   var isBeingKilled;
   var onKilledFuncs = [];
+  var positionHistorie = [];
+  // FIXME this is dirty, because it assumes a flying stinky at first position
+  var inThrowMode = true;
 
   this.getWidth = function() {
     return width;
@@ -50,11 +53,22 @@ var Stinky = function() {
       sprite.body.blocked.down && sprite.position.y >= game.height - height;
   }
 
-  this.create = function() {
-    var posX = 50;
-    var posY = game.world.height / 2;
+  var addPositionToHistorie = function() {
+    positionHistorie.push(me.getPosition());
+  }
+
+  this.hitGreen = function() {
+    me.stopMoving();
+    if (inThrowMode) {
+      addPositionToHistorie();
+      inThrowMode = false;
+    }
+  }
+
+  this.create = function(position) {
+    if (!position) throw 'need a starting position';
     isBeingKilled = false;
-    sprite = game.add.sprite(posX, posY, name);
+    sprite = game.add.sprite(position.x, position.y, name);
     game.physics.enable(sprite);
     sprite.body.collideWorldBounds = true;
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
@@ -73,11 +87,12 @@ var Stinky = function() {
 
   this.throw = function(aThrow) {
     if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
+    inThrowMode = true;
     aThrow.doThrow(sprite);
   }
 
   this.getPosition = function() {
-    return sprite.position;
+    return JSON.parse(JSON.stringify(sprite.position));
   }
 
   this.getCenterPosition = function() {
@@ -104,7 +119,10 @@ var Stinky = function() {
 
   var recreate = function() {
     me.stopMoving();
-    me.create();
+    me.create(positionHistorie[positionHistorie.length - 1]);
+    if (positionHistorie.length != 1) {
+      me.stopMoving();
+    }
   }
 
   this.getSprite = function() {

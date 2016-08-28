@@ -50,7 +50,10 @@ var StinkySystem = function() {
     platforms.create();
     board.create();
     toilet.create();
-    stinky.create();
+    stinky.create({
+      x: 138,
+      y: 415
+    });
     stinky.onKilledAdd(onStinkyKilled);
     stinkyThrow.create();
     toilet.postcreate();
@@ -63,7 +66,7 @@ var StinkySystem = function() {
   }
 
   var onGreenHit = function() {
-    stinky.stopMoving();
+    stinky.hitGreen();
     game.physics.arcade.gravity.y = 0;
   }
 
