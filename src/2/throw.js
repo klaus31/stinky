@@ -18,8 +18,10 @@ var Throw = function() {
   }
 
   this.update = function() {
-    if (start) {
+    if (isPositionChangedEnoughToThrow()) {
       stinkyLine.setTo(start, getEnd());
+    } else {
+      stinkyLine.hide();
     }
   }
 
@@ -36,8 +38,12 @@ var Throw = function() {
     offset = false;
   }
 
+  var isPositionChangedEnoughToThrow = function() {
+    return start && offset && (Math.abs(start.x - getEnd().x) > 5 || Math.abs(start.y - getEnd().y) > 5);
+  }
+
   this.isStarted = function() {
-    return !!start;
+    return !!start && isPositionChangedEnoughToThrow();;
   }
 
   this.end = function(pointer) {
