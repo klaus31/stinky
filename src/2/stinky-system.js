@@ -28,6 +28,8 @@ var StinkySystem = function() {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
       game.physics.arcade.gravity.y = 200;
+      stinkyPoints.onIncrement(board.updateScore);
+      stinkyPoints.incrementTries();
     }
   };
 
@@ -55,7 +57,6 @@ var StinkySystem = function() {
   };
 
   var onStinkyKilled = function() {
-    stinkyPoints.incrementTries();
     game.physics.arcade.gravity.y = 200;
   }
 
