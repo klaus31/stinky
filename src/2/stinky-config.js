@@ -4,17 +4,27 @@ var StinkyConfig = {
       episodes: [
         {
           layerName: '4-trees',
-          startpos: {
-            x: 138,
-            y: 400
+          stinky : {
+            options: {
+              position: {
+                x: 138,
+                y: 400
+              },
+              gravity: 200
+            }
           },
           par: 5
         },
         {
           layerName: 'green-floor',
-          startpos: {
-            x: 10,
-            y: 500
+          stinky : {
+            options: {
+              position: {
+                x: 10,
+                y: 500
+              },
+              gravity: 200
+            }
           },
           par: 2
         }

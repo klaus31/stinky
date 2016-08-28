@@ -13,6 +13,7 @@ var Stinky = function() {
   var positionHistorie = [];
   // FIXME this is dirty, because it assumes a flying stinky at first position
   var inThrowMode = true;
+  var gravity;
 
   this.getWidth = function() {
     return width;
@@ -58,17 +59,19 @@ var Stinky = function() {
   }
 
   this.hitGreen = function() {
-    me.stopMoving();
     if (inThrowMode) {
+      me.stopMoving();
       addPositionToHistorie();
       inThrowMode = false;
     }
   }
 
-  this.create = function(position) {
-    if (!position) throw 'need a starting position';
+  this.create = function(options) {
+    if (!options.position) throw 'need a starting position';
+    if (!options.gravity) throw 'need a gravity';
+    gravity = options.gravity;
     isBeingKilled = false;
-    sprite = game.add.sprite(position.x, position.y, name);
+    sprite = game.add.sprite(options.position.x, options.position.y, name);
     game.physics.enable(sprite);
     sprite.body.collideWorldBounds = true;
     sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
@@ -77,6 +80,7 @@ var Stinky = function() {
     var i = onKilledFuncs.length;
     while (i--) me.onKilledAdd(onKilledFuncs[i]);
     sprite.animations.play('infinite');
+    sprite.body.gravity.y = gravity;
   }
 
   this.onKilledAdd = function(func) {
@@ -87,7 +91,12 @@ var Stinky = function() {
 
   this.throw = function(aThrow) {
     if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
-    inThrowMode = true;
+    sprite.body.gravity.y = gravity;
+    window.setTimeout(function(){
+      /*
+      dirty hack: stinky kann im grün landenund sich in den stein eingraben. Das Problemist, dass dann beim nächsten throw estinky wieder im grün hängen bleibt. Leider kann ich es nicht vermeiden, dass stinky imgrünhngen bleibt, was sehrviel besser wäre. map.setTileIndexCallback überschreibt nämlich den "default" callback, an denichso nicht rankomme.
+      */
+      inThrowMode = true;}, 200);
     aThrow.doThrow(sprite);
   }
 
@@ -104,6 +113,7 @@ var Stinky = function() {
 
   this.stopMoving = function() {
     sprite.moves = false;
+    sprite.body.gravity.y = 0;
     sprite.body.velocity.x = 0;
     sprite.body.velocity.y = 0;
   }
@@ -119,7 +129,11 @@ var Stinky = function() {
 
   var recreate = function() {
     me.stopMoving();
-    me.create(positionHistorie[positionHistorie.length - 1]);
+    var options = {
+      position: positionHistorie[positionHistorie.length - 1],
+      gravity: gravity
+    }
+    me.create(options);
     if (positionHistorie.length != 1) {
       me.stopMoving();
     }

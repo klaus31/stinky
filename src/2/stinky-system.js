@@ -1,7 +1,5 @@
 var StinkySystem = function() {
 
-  const GRAVITY = 100;
-
   var stinky = new Stinky();
   var toilet = new Toilett();
   var background;
@@ -29,7 +27,6 @@ var StinkySystem = function() {
     if (stinkyThrow.isStarted()) {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
-      game.physics.arcade.gravity.y = GRAVITY;
       stinkyPoints.onIncrement(board.updateScore);
       stinkyPoints.incrementTries();
     } else {
@@ -42,7 +39,6 @@ var StinkySystem = function() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.physics.arcade.gravity.y = GRAVITY;
     game.stage.backgroundColor = backgroundColor;
     background = game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
 
@@ -54,21 +50,15 @@ var StinkySystem = function() {
     platforms.create(currentEpisode.layerName);
     board.create();
     toilet.create();
-    stinky.create(currentEpisode.startpos);
-    stinky.onKilledAdd(onStinkyKilled);
+    stinky.create(currentEpisode.stinky.options);
     stinkyThrow.create();
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
   };
 
-  var onStinkyKilled = function() {
-    game.physics.arcade.gravity.y = GRAVITY;
-  }
-
   var onGreenHit = function() {
     stinky.hitGreen();
-    game.physics.arcade.gravity.y = 0;
   }
 
   var update = function() {
