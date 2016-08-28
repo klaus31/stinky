@@ -48,7 +48,7 @@ var StinkySystem = function() {
     stinkyPoints.onIncrement(board.updateScore);
 
     platforms.create(currentEpisode.layerName);
-    board.create();
+    board.create(currentEpisode.par);
     toilet.create();
     stinky.create(currentEpisode.stinky.options);
     stinkyThrow.create();

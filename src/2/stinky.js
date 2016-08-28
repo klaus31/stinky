@@ -92,11 +92,12 @@ var Stinky = function() {
   this.throw = function(aThrow) {
     if (!(aThrow instanceof Throw)) throw 'aThrow must be instance of Throw';
     sprite.body.gravity.y = gravity;
-    window.setTimeout(function(){
+    window.setTimeout(function() {
       /*
       dirty hack: stinky kann im grün landenund sich in den stein eingraben. Das Problemist, dass dann beim nächsten throw estinky wieder im grün hängen bleibt. Leider kann ich es nicht vermeiden, dass stinky imgrünhngen bleibt, was sehrviel besser wäre. map.setTileIndexCallback überschreibt nämlich den "default" callback, an denichso nicht rankomme.
       */
-      inThrowMode = true;}, 200);
+      inThrowMode = true;
+    }, 200);
     aThrow.doThrow(sprite);
   }
 

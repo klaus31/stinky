@@ -1,7 +1,10 @@
 var Board = function() {
+
   var me = this;
   var countThrown;
   var countHit;
+  var currentPar;
+
   const width = 250;
   const height = 40;
   const name = 'board';
@@ -11,7 +14,8 @@ var Board = function() {
     game.load.image(name, file, width, height);
   }
 
-  this.create = function() {
+  this.create = function(par) {
+    currentPar = par;
     var posX = game.world.width / 2 - (width / 2);
     var posY = 0;
     image = game.add.sprite(posX, posY, name);
@@ -25,7 +29,7 @@ var Board = function() {
   }
 
   this.updateScore = function(thrown, hits) {
-    countThrown.text = thrown;
+    countThrown.text = thrown + '/' + currentPar;
     countHit.text = hits;
   }
 
