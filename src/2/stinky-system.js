@@ -38,6 +38,8 @@ var StinkySystem = function() {
   };
 
   var create = function() {
+    var currentEpisode = StinkyConfig.series[0].episodes[1];
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.physics.arcade.gravity.y = GRAVITY;
@@ -49,14 +51,10 @@ var StinkySystem = function() {
 
     stinkyPoints.onIncrement(board.updateScore);
 
-//    platforms.create('4-trees');
-    platforms.create('green-floor');
+    platforms.create(currentEpisode.layerName);
     board.create();
     toilet.create();
-    stinky.create({
-      x: 138,
-      y: 400
-    });
+    stinky.create(currentEpisode.startpos);
     stinky.onKilledAdd(onStinkyKilled);
     stinkyThrow.create();
     toilet.postcreate();
