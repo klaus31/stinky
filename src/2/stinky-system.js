@@ -1,4 +1,4 @@
-var StinkySystem = function() {
+var StinkySystem = function(hole) {
 
   var stinky = new Stinky();
   var toilet = new Toilett();
@@ -11,7 +11,7 @@ var StinkySystem = function() {
   var board = new Board();
   var platforms = new Platforms();
 
-  var preload = function() {
+  this.preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
     board.preload();
     toilet.preload();
@@ -34,9 +34,7 @@ var StinkySystem = function() {
     }
   };
 
-  var create = function() {
-    var currentHole = StinkyConfig.parkours[0].holes[1];
-
+  this.create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.stage.backgroundColor = backgroundColor;
@@ -47,10 +45,10 @@ var StinkySystem = function() {
 
     stinkyPoints.onIncrement(board.updateScore);
 
-    platforms.create(currentHole.layerName);
-    board.create(currentHole.par);
+    platforms.create(hole.layerName);
+    board.create(hole.par);
     toilet.create();
-    stinky.create(currentHole.stinky.options);
+    stinky.create(hole.stinky.options);
     stinkyThrow.create();
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);
@@ -61,7 +59,7 @@ var StinkySystem = function() {
     stinky.hitGreen();
   }
 
-  var update = function() {
+  this.update = function() {
     game.physics.arcade.collide(stinky.getSprite(), platforms.getLayer());
 
     stinkyThrow.update();
@@ -83,18 +81,7 @@ var StinkySystem = function() {
     background.tilePosition.y -= 1;
   };
 
-  var render = function() {
+  this.render = function() {
     stinkyThrow.render();
-  }
-
-  var game = new Phaser.Game(960, 600, Phaser.CANVAS, '', {
-    preload: preload,
-    create: create,
-    update: update,
-    render: render
-  });
-
-  this.getGame = function() {
-    return game;
   }
 };
