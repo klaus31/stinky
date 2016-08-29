@@ -35,7 +35,7 @@ var StinkySystem = function() {
   };
 
   var create = function() {
-    var currentEpisode = StinkyConfig.series[0].episodes[1];
+    var currentHole = StinkyConfig.parkours[0].holes[1];
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -47,10 +47,10 @@ var StinkySystem = function() {
 
     stinkyPoints.onIncrement(board.updateScore);
 
-    platforms.create(currentEpisode.layerName);
-    board.create(currentEpisode.par);
+    platforms.create(currentHole.layerName);
+    board.create(currentHole.par);
     toilet.create();
-    stinky.create(currentEpisode.stinky.options);
+    stinky.create(currentHole.stinky.options);
     stinkyThrow.create();
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);

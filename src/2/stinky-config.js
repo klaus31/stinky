@@ -1,6 +1,6 @@
 var StinkyConfig = {
-  series: [{
-    episodes: [{
+  parkours: [{
+    holes: [{
       layerName: '4-trees',
       stinky: {
         options: {
