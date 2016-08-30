@@ -29,6 +29,230 @@ var StinkyConfig = {
         }
       },
       par: 2
+    }, {
+      layerName: 'house-and-man',
+      name: 'house + man',
+      level: 3,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 4
+    }, {
+      layerName: 'level-4',
+      name: 'TODO',
+      level: 4,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-5',
+      name: 'TODO',
+      level: 5,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-6',
+      name: 'TODO',
+      level: 6,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-7',
+      name: 'TODO',
+      level: 7,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-8',
+      name: 'TODO',
+      level: 8,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-9',
+      name: 'TODO',
+      level: 9,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-10',
+      name: 'TODO',
+      level: 10,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-11',
+      name: 'TODO',
+      level: 11,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-12',
+      name: 'TODO',
+      level: 12,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-13',
+      name: 'TODO',
+      level: 13,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-14',
+      name: 'TODO',
+      level: 14,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-15',
+      name: 'TODO',
+      level: 15,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-16',
+      name: 'TODO',
+      level: 16,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-17',
+      name: 'TODO',
+      level: 17,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
+    }, {
+      layerName: 'level-18',
+      name: 'TODO',
+      level: 18,
+      stinky: {
+        options: {
+          position: {
+            x: 10,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 5
     }]
   }]
 }
