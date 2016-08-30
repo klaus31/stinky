@@ -7,9 +7,10 @@ var Platforms = function(hole) {
   var layer;
 
   this.preload = function() {
-    game.load.tilemap('map', 'game/parkours/'+Data.parkour.name+'/'+hole.layerName+'.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('green', 'game/green.png');
-    game.load.image('wall', 'game/wall.png');
+    var basicDir='game/parkours/'+Data.parkour.name+'/';
+    game.load.tilemap('map', basicDir+hole.layerName+'.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('green', basicDir+'green.png');
+    game.load.image('wall', basicDir+'wall.png');
   }
 
   this.create = function(layername) {
