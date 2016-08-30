@@ -45,7 +45,7 @@ var StinkyConfig = {
       par: 4
     }, {
       layerName: 'level-4',
-      name: 'TODO',
+      name: 'TODO level 4',
       level: 4,
       stinky: {
         options: {
@@ -59,7 +59,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-5',
-      name: 'TODO',
+      name: 'TODO level 5',
       level: 5,
       stinky: {
         options: {
@@ -73,7 +73,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-6',
-      name: 'TODO',
+      name: 'TODO level 6',
       level: 6,
       stinky: {
         options: {
@@ -87,7 +87,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-7',
-      name: 'TODO',
+      name: 'TODO level 7',
       level: 7,
       stinky: {
         options: {
@@ -101,7 +101,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-8',
-      name: 'TODO',
+      name: 'TODO level 8',
       level: 8,
       stinky: {
         options: {
@@ -115,7 +115,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-9',
-      name: 'TODO',
+      name: 'TODO level 9',
       level: 9,
       stinky: {
         options: {
@@ -129,7 +129,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-10',
-      name: 'TODO',
+      name: 'TODO level 10',
       level: 10,
       stinky: {
         options: {
@@ -143,7 +143,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-11',
-      name: 'TODO',
+      name: 'TODO level 11',
       level: 11,
       stinky: {
         options: {
@@ -157,7 +157,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-12',
-      name: 'TODO',
+      name: 'TODO level 12',
       level: 12,
       stinky: {
         options: {
@@ -171,7 +171,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-13',
-      name: 'TODO',
+      name: 'TODO level 13',
       level: 13,
       stinky: {
         options: {
@@ -185,7 +185,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-14',
-      name: 'TODO',
+      name: 'TODO level 14',
       level: 14,
       stinky: {
         options: {
@@ -199,7 +199,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-15',
-      name: 'TODO',
+      name: 'TODO level 15',
       level: 15,
       stinky: {
         options: {
@@ -213,7 +213,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-16',
-      name: 'TODO',
+      name: 'TODO level 16',
       level: 16,
       stinky: {
         options: {
@@ -227,7 +227,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-17',
-      name: 'TODO',
+      name: 'TODO level 17',
       level: 17,
       stinky: {
         options: {
@@ -241,7 +241,7 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-18',
-      name: 'TODO',
+      name: 'TODO level 18',
       level: 18,
       stinky: {
         options: {

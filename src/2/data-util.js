@@ -1,12 +1,5 @@
 var Data = {}; // TODO implement real persistence solution
 
-Data.parkour = StinkyConfig.parkours[0]; // TODO delete: it's just for testing results
-while (Data.parkour.holes.length < 19) { // FIXME delete when 18 holes implemented
-  var holeCopy = JSON.parse(JSON.stringify(Data.parkour.holes[0]));
-  holeCopy.level = Data.parkour.holes.length;
-  Data.parkour.holes.push(holeCopy);
-}
-
 var DataUtil = {};
 
 DataUtil.PARKOUR_LENGTH = 18; // yes, every f**ing parkour is bound to 18 holes without any need \\_(OvO)_//

@@ -4,7 +4,7 @@ var Result = function(parkour) {
   const TABLE_ROW_WIDTH = 400;
   const TABLE_ROW_HEIGHT = 40;
   const TABLE_Y = 200;
-  const CELL_PADDING = 5;
+  const CELL_PADDING = 10;
 
   this.preload = function() {
     game.load.image('table-row', 'result/table-row.png');
@@ -29,7 +29,7 @@ var Result = function(parkour) {
         x: i < 9 ? xFirstCol : xSecondCol,
         y: TABLE_Y + TABLE_ROW_HEIGHT * (i % 9)
       });
-    } while (i++ < DataUtil.PARKOUR_LENGTH);
+    } while (++i < DataUtil.PARKOUR_LENGTH);
     return positions;
   }
 
