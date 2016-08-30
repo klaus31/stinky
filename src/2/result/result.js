@@ -1,4 +1,4 @@
-var Result = function() {
+var Result = function(parkour) {
 
   const EOL = '\r\n';
   const TABLE_ROW_WIDTH = 400;
@@ -31,8 +31,28 @@ var Result = function() {
     var createRow = function(x, y, cols, textstyle) {
       game.add.text(x, y, cols[0], textstyle);
       game.add.text(x + 180, y, cols[1], textstyle);
-      game.add.text(x+255, y, cols[2], textstyle);
-      game.add.text(x+325, y, cols[3], textstyle);
+      game.add.text(x + 255, y, cols[2], textstyle);
+      game.add.text(x + 325, y, cols[3], textstyle);
+    }
+    var createTableContents = function() {
+      var textstyle = {
+        fontSize: '16px',
+        fill: '#000',
+        font: 'Courier'
+      };
+
+      var level = 0;
+      while (level++ < HOLES_IN_PARKOUR) {
+        var i = level - 1;
+        var hole = DataUtil.getHole(level);
+        var y = rowPositions[i].y + CELL_PADDING;
+        var name = level + '. ' + hole.name;
+        var par = hole.par;
+        var tries = '?';
+        var total = total ? total + tries : 0;
+        var headlines = [name, par, tries, total];
+        createRow(rowPositions[i].x + CELL_PADDING, y, headlines, textstyle);
+      };
     }
     var createHeadlines = function() {
       var textstyle = {
@@ -53,8 +73,9 @@ var Result = function() {
       }
     }
     game.add.sprite(0, 0, 'result-bg');
-    createHeadlines();
     createTable();
+    createHeadlines();
+    createTableContents();
   }
 
   this.update = function() {}

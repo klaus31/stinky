@@ -3,19 +3,10 @@ var StinkySystem = function() {
   if (!Data.parkour) throw 'Data.parkour must be set';
 
   var getCurrentHole = function() {
-    var getHole = function(level) {
-      var i = Data.parkour.holes.length;
-      while (i--) {
-        if (Data.parkour.holes[i].level == level) return Data.parkour.holes[i];
-      }
-      throw 'no hole with level: ' + level;
-    }
     var i = 0;
     while (i++ < Data.parkour.holes.length) {
-      var holeCandidate = getHole(i);
-      console.info('searh ..') // TODO raus
+      var holeCandidate = DataUtil.getHole(i);
       if (!holeCandidate.playedAlready) {
-        console.log(holeCandidate)
         return holeCandidate;
       }
     }
