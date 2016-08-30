@@ -5,7 +5,7 @@ var StinkySystem = function(hole) {
   var background;
   var backgroundColor = '#FF77DD';
   var backgroundImageName = 'toilet-paper-bg';
-  var backgroundImageFile = backgroundImageName + '.png';
+  var backgroundImageFile = 'game/'+ backgroundImageName + '.png';
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();

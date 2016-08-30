@@ -7,9 +7,9 @@ var Platforms = function() {
   var layer;
 
   this.preload = function() {
-    game.load.tilemap('map', 'platforms.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('green', 'green.png');
-    game.load.image('wall', 'wall.png');
+    game.load.tilemap('map', 'game/platforms.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('green', 'game/green.png');
+    game.load.image('wall', 'game/wall.png');
   }
 
   this.create = function(layername) {

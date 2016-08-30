@@ -3,7 +3,7 @@ var Stinky = function() {
   const width = 30;
   const height = 30;
   const name = 'stinky';
-  const file = name + '.png';
+  const file = 'game/'+ name + '.png';
 
   var sprite;
   var me = this;

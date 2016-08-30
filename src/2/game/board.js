@@ -8,7 +8,7 @@ var Board = function() {
   const width = 250;
   const height = 40;
   const name = 'board';
-  const file = name + '.png';
+  const file = 'game/'+ name + '.png';
 
   this.preload = function() {
     game.load.image(name, file, width, height);

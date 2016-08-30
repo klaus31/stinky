@@ -3,9 +3,9 @@ var Toilett = function() {
   var width = 100;
   var height = 100;
   var name = 'toilet';
-  var file = name + '.png';
+  var file = 'game/'+ name + '.png';
   var nameOpen = 'toilet-open';
-  var fileOpen = nameOpen + '.png';
+  var fileOpen = 'game/'+ nameOpen + '.png';
   var sprite;
   var thingToFlushDown;
   var speedForFlushDown = 2;
@@ -14,7 +14,7 @@ var Toilett = function() {
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
     game.load.image(nameOpen, fileOpen, width, height);
-    game.load.audio('toilet-flush', 'toilet-flush.mp3');
+    game.load.audio('toilet-flush', 'game/toilet-flush.mp3');
   }
 
   this.create = function() {
