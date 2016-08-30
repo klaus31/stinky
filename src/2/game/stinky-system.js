@@ -1,11 +1,35 @@
-var StinkySystem = function(hole) {
+var StinkySystem = function() {
+
+  if (!Data.parkour) throw 'Data.parkour must be set';
+
+  var getCurrentHole = function() {
+    var getHole = function(level) {
+      var i = Data.parkour.holes.length;
+      while (i--) {
+        if (Data.parkour.holes[i].level == level) return Data.parkour.holes[i];
+      }
+      throw 'no hole with level: ' + level;
+    }
+    var i = 0;
+    while (i++ < Data.parkour.holes.length) {
+      var holeCandidate = getHole(i);
+      console.info('searh ..') // TODO raus
+      if (!holeCandidate.playedAlready) {
+        console.log(holeCandidate)
+        return holeCandidate;
+      }
+    }
+    throw 'no hole to play could be found';
+  }
+
+  var hole = getCurrentHole();
 
   var stinky = new Stinky();
   var toilet = new Toilett();
   var background;
   var backgroundColor = '#FF77DD';
   var backgroundImageName = 'toilet-paper-bg';
-  var backgroundImageFile = 'game/'+ backgroundImageName + '.png';
+  var backgroundImageFile = 'game/' + backgroundImageName + '.png';
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
@@ -69,6 +93,14 @@ var StinkySystem = function(hole) {
         stinky.markAsWillBeKilled();
         toilet.flushDown(stinky);
         stinkyPoints.incrementPoints();
+        hole.playedAlready = true;
+        var parkour = 0; // TODO identify
+        // TODO show result instead
+        // TODO if last hole of parkour, show final reasult instead
+        var nextLevelKey = 'game-' + parkour + '-' + (hole.level + 1);
+        game.state.add(nextLevelKey, new StinkySystem());
+        game.state.start(nextLevelKey);
+
       } else if (toilet.isHit(stinky).any()) {
         stinky.markAsWillBeKilled();
         stinky.explode();

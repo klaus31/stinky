@@ -3,9 +3,9 @@ var Toilett = function() {
   var width = 100;
   var height = 100;
   var name = 'toilet';
-  var file = 'game/'+ name + '.png';
+  var file = 'game/' + name + '.png';
   var nameOpen = 'toilet-open';
-  var fileOpen = 'game/'+ nameOpen + '.png';
+  var fileOpen = 'game/' + nameOpen + '.png';
   var sprite;
   var thingToFlushDown;
   var speedForFlushDown = 2;
