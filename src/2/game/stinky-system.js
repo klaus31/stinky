@@ -13,7 +13,7 @@ var StinkySystem = function() {
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
-  var platforms = new Platforms();
+  var platforms = new Platforms(hole);
 
   this.preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 150, 150);

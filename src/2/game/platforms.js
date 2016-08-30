@@ -1,4 +1,4 @@
-var Platforms = function() {
+var Platforms = function(hole) {
 
   const ID_GREEN = 1;
   const ID_WALL = 2;
@@ -7,7 +7,7 @@ var Platforms = function() {
   var layer;
 
   this.preload = function() {
-    game.load.tilemap('map', 'game/platforms.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'game/parkours/'+Data.parkour.name+'/'+hole.layerName+'.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('green', 'game/green.png');
     game.load.image('wall', 'game/wall.png');
   }

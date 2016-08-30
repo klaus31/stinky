@@ -1,7 +1,8 @@
 var StinkyConfig = {
   parkours: [{
+    name: 'starter',
     holes: [{
-      layerName: '4-trees',
+      layerName: 'trees',
       name: 'four trees',
       level: 2,
       stinky: {
