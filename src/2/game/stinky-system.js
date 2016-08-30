@@ -2,18 +2,7 @@ var StinkySystem = function() {
 
   if (!Data.parkour) throw 'Data.parkour must be set';
 
-  var getCurrentHole = function() {
-    var i = 0;
-    while (i++ < Data.parkour.holes.length) {
-      var holeCandidate = DataUtil.getHole(i);
-      if (!holeCandidate.playedAlready) {
-        return holeCandidate;
-      }
-    }
-    throw 'no hole to play could be found';
-  }
-
-  var hole = getCurrentHole();
+  var hole = DataUtil.getNextHole();
 
   var stinky = new Stinky();
   var toilet = new Toilett();
@@ -85,10 +74,11 @@ var StinkySystem = function() {
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
         stinky.markAsWillBeKilled();
-        toilet.flushDown(stinky);
-        stinkyPoints.incrementPoints();
-        hole.playedAlready = true;
-        game.state.start('Result');
+        toilet.flushDown(stinky, function() {
+          stinkyPoints.incrementPoints();
+          hole.playedAlready = true;
+          game.state.start('Result');
+        });
       } else if (toilet.isHit(stinky).any()) {
         stinky.markAsWillBeKilled();
         stinky.explode();

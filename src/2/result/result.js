@@ -4,16 +4,17 @@ var Result = function(parkour) {
   const TABLE_ROW_WIDTH = 400;
   const TABLE_ROW_HEIGHT = 40;
   const TABLE_Y = 200;
-  const HOLES_IN_PARKOUR = 18;
   const CELL_PADDING = 5;
 
   this.preload = function() {
     game.load.image('table-row', 'result/table-row.png');
     game.load.image('result-bg', 'result/result-bg.png');
+    // TODO check game.load.atlas for button
+    game.load.image('next-button', 'result/next-button.png');
   }
 
   var nextLevel = function() {
-    var nextLevelKey = 'game-' + (DataUtil.getCurrentLevel() + 1);
+    var nextLevelKey = 'game-' + DataUtil.getNextLevel();
     game.state.add(nextLevelKey, new StinkySystem());
     game.state.start(nextLevelKey);
   }
@@ -28,7 +29,7 @@ var Result = function(parkour) {
         x: i < 9 ? xFirstCol : xSecondCol,
         y: TABLE_Y + TABLE_ROW_HEIGHT * (i % 9)
       });
-    } while (i++ < HOLES_IN_PARKOUR);
+    } while (i++ < DataUtil.PARKOUR_LENGTH);
     return positions;
   }
 
@@ -36,9 +37,10 @@ var Result = function(parkour) {
     var rowPositions = getPosOfRows();
     var createRow = function(x, y, cols, textstyle) {
       game.add.text(x, y, cols[0], textstyle);
-      game.add.text(x + 180, y, cols[1], textstyle);
-      game.add.text(x + 255, y, cols[2], textstyle);
-      game.add.text(x + 325, y, cols[3], textstyle);
+      game.add.text(x + 185, y, cols[1], textstyle);
+      game.add.text(x + 238, y, cols[2], textstyle);
+      game.add.text(x + 301, y, cols[3], textstyle);
+      game.add.text(x + 359, y, cols[4], textstyle);
     }
     var createTableContents = function() {
       var textstyle = {
@@ -48,19 +50,23 @@ var Result = function(parkour) {
       };
 
       var level = 0;
-      var total = 0;
-      while (level++ < HOLES_IN_PARKOUR) {
+      while (level++ < DataUtil.PARKOUR_LENGTH) {
+        var handicapTotalText = '';
+        var handicapHoleText = '';
         var i = level - 1;
         var hole = DataUtil.getHole(level);
         var y = rowPositions[i].y + CELL_PADDING;
         var name = level + '. ' + hole.name;
         var par = hole.par;
         var tries = '';
-        if(hole.playedAlready) {
+        if (hole.playedAlready) {
           tries = hole.tries - 0;
-          total += tries - 0;
+          var handicapTotal = DataUtil.getHandicap(hole.level);
+          var handicapHole = hole.tries - hole.par;
+          handicapTotalText = handicapTotal> 0 ? '+' + handicapTotal : handicapTotal;
+          handicapHoleText = handicapHole> 0 ? '+' + handicapHole : handicapHole;
         }
-        var headlines = [name, par, tries, total];
+        var headlines = [name, par, tries, handicapHoleText, handicapTotalText];
         createRow(rowPositions[i].x + CELL_PADDING, y, headlines, textstyle);
       };
     }
@@ -72,7 +78,7 @@ var Result = function(parkour) {
         fontWeight: 'bold'
       };
       var y = rowPositions[0].y - CELL_PADDING - 16;
-      var headlines = ['Hole', 'Par', 'Tries', 'Total'];
+      var headlines = ['Hole', 'Par', 'Tries', 'HC', 'HCT']; // FIXME HC für Handicap und HCT für Handicap Total rafft niemand
       createRow(rowPositions[0].x + CELL_PADDING, y, headlines, textstyle);
       createRow(rowPositions[9].x + CELL_PADDING, y, headlines, textstyle);
     }
@@ -83,6 +89,9 @@ var Result = function(parkour) {
       }
     }
     game.add.sprite(0, 0, 'result-bg');
+    // TODO when game.load.atlas check:
+    // game.add.button(400, 600, 'start-button', startGame, game, 'buttonOver', 'buttonOut', 'buttonOver');
+    game.add.button(0, 0, 'next-button', nextLevel, game);
     createTable();
     createHeadlines();
     createTableContents();

@@ -63,7 +63,8 @@ var Toilett = function() {
     if (!sprite) throw 'sprite not created yet';
   };
 
-  this.flushDown = function(thingToFlush) {
+  this.flushDown = function(thingToFlush, onFinished) {
+    onFinished = onFinished || function() {}
     if (!thingToFlush.kill) throw 'thingToFlush must implement kill';
     if (!thingToFlush.setPosition) throw 'thingToFlush must implement setPosition';
     if (!thingToFlush.stopMoving) throw 'thingToFlush must implement stopMoving';
@@ -72,6 +73,8 @@ var Toilett = function() {
       thingToFlush.setPosition(sprite.x + 22, sprite.y);
       thingToFlushDown = thingToFlush;
       soundFlush.play();
+      // TODO on sound finished
+      onFinished();
     }
   };
 
