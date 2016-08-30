@@ -42,7 +42,10 @@ var StinkySystem = function() {
     if (stinkyThrow.isStarted()) {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
-      stinkyPoints.onIncrement(board.updateScore);
+      stinkyPoints.onIncrement(function(tries, hits) {
+        board.updateScore(tries, hits);
+        hole.tries = tries;
+      });
       stinkyPoints.incrementTries();
     } else {
       stinkyThrow.abort();
@@ -85,13 +88,7 @@ var StinkySystem = function() {
         toilet.flushDown(stinky);
         stinkyPoints.incrementPoints();
         hole.playedAlready = true;
-        var parkour = 0; // TODO identify
-        // TODO show result instead
-        // TODO if last hole of parkour, show final reasult instead
-        var nextLevelKey = 'game-' + parkour + '-' + (hole.level + 1);
-        game.state.add(nextLevelKey, new StinkySystem());
-        game.state.start(nextLevelKey);
-
+        game.state.start('Result');
       } else if (toilet.isHit(stinky).any()) {
         stinky.markAsWillBeKilled();
         stinky.explode();

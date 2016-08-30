@@ -12,6 +12,12 @@ var Result = function(parkour) {
     game.load.image('result-bg', 'result/result-bg.png');
   }
 
+  var nextLevel = function() {
+    var nextLevelKey = 'game-' + (DataUtil.getCurrentLevel() + 1);
+    game.state.add(nextLevelKey, new StinkySystem());
+    game.state.start(nextLevelKey);
+  }
+
   var getPosOfRows = function() {
     var i = 0;
     var xFirstCol = (game.world.width - 2 * TABLE_ROW_WIDTH) / 3;
@@ -42,14 +48,18 @@ var Result = function(parkour) {
       };
 
       var level = 0;
+      var total = 0;
       while (level++ < HOLES_IN_PARKOUR) {
         var i = level - 1;
         var hole = DataUtil.getHole(level);
         var y = rowPositions[i].y + CELL_PADDING;
         var name = level + '. ' + hole.name;
         var par = hole.par;
-        var tries = '?';
-        var total = total ? total + tries : 0;
+        var tries = '';
+        if(hole.playedAlready) {
+          tries = hole.tries - 0;
+          total += tries - 0;
+        }
         var headlines = [name, par, tries, total];
         createRow(rowPositions[i].x + CELL_PADDING, y, headlines, textstyle);
       };
