@@ -63,8 +63,8 @@ var Result = function(parkour) {
           tries = hole.tries - 0;
           var handicapTotal = DataUtil.getHandicap(hole.level);
           var handicapHole = hole.tries - hole.par;
-          handicapTotalText = handicapTotal> 0 ? '+' + handicapTotal : handicapTotal;
-          handicapHoleText = handicapHole> 0 ? '+' + handicapHole : handicapHole;
+          handicapTotalText = handicapTotal > 0 ? '+' + handicapTotal : handicapTotal;
+          handicapHoleText = handicapHole > 0 ? '+' + handicapHole : handicapHole;
         }
         var headlines = [name, par, tries, handicapHoleText, handicapTotalText];
         createRow(rowPositions[i].x + CELL_PADDING, y, headlines, textstyle);

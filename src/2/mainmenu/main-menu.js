@@ -1,16 +1,15 @@
 var MainMenu = function() {
 
   this.preload = function() {
-    game.load.image('stinky-img', 'mainmenu/stinky-img.png');
-    // TODO check game.load.atlas for button
-    game.load.image('start-button', 'mainmenu/start-button.png');
+    game.load.image('parkour-1', 'mainmenu/parkour-1.png');
+    game.load.image('parkour-2', 'mainmenu/parkour-2.png');
+    game.load.atlas('parkour-1-buttons', 'mainmenu/parkour-1-buttons.png', 'mainmenu/parkour-1-buttons.json');
   }
 
   this.create = function() {
-    game.add.sprite(0, 0, 'stinky-img');
-    // TODO when game.load.atlas check:
-    // game.add.button(400, 600, 'start-button', startGame, game, 'buttonOver', 'buttonOut', 'buttonOver');
-    game.add.button(400, 200, 'start-button', startGame, game);
+    game.add.sprite(0, 0, 'parkour-1');
+    game.add.sprite(game.world.width / 2, 0, 'parkour-2');
+    game.add.button(207, 71, 'parkour-1-buttons', startGame, game, 'hover', 'normal', 'down');
   }
 
   this.update = function() {}

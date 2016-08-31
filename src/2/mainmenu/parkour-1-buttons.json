@@ -1,0 +1,33 @@
+{"frames": {
+
+"down":
+{
+  "frame": {"x":144,"y":0,"w":74,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":62},
+	"sourceSize": {"w":74,"h":62}
+},
+"hover":
+{
+	"frame": {"x":74,"y":0,"w":74,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":62},
+	"sourceSize": {"w":74,"h":62}
+},
+"normal":
+{
+  "frame": {"x":0,"y":0,"w":74,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":62},
+	"sourceSize": {"w":74,"h":62}
+}},
+"meta": {
+	"image": "parkour-1-buttons",
+	"format": "RGBA8888",
+	"size": {"w":222,"h":62},
+	"scale": "1"
+}
+}

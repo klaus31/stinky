@@ -44,7 +44,7 @@ DataUtil.getHandicap = function(level) {
   var holesRelevant = [];
   var i = holesPlayed.length;
   while (i--) {
-    if(holesPlayed[i].level <= level){
+    if (holesPlayed[i].level <= level) {
       holesRelevant.push(holesPlayed[i]);
     }
   }
