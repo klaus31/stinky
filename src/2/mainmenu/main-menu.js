@@ -21,8 +21,6 @@ var MainMenu = function() {
     game.add.sprite(game.world.width / 2, 0, 'parkour-2');
     game.add.button(207, 71, 'parkour-1-buttons', startGame, game, 'hover', 'normal', 'down');
     game.add.button(game.world.width / 2 + 220, 143, 'parkour-2-buttons', payFirst, game, 'hover', 'normal', 'down');
-
-
   }
 
   this.update = function() {}

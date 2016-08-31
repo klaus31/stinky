@@ -13,7 +13,7 @@ var Toilett = function() {
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
-    game.load.image(nameOpen, fileOpen, width, height);
+    game.load.spritesheet(nameOpen, fileOpen, width, height);
     game.load.audio('toilet-flush', 'game/toilet-flush.mp3');
   }
 
@@ -63,8 +63,7 @@ var Toilett = function() {
     if (!sprite) throw 'sprite not created yet';
   };
 
-  this.flushDown = function(thingToFlush, onFinished) {
-    onFinished = onFinished || function() {}
+  this.flushDown = function(thingToFlush) {
     if (!thingToFlush.kill) throw 'thingToFlush must implement kill';
     if (!thingToFlush.setPosition) throw 'thingToFlush must implement setPosition';
     if (!thingToFlush.stopMoving) throw 'thingToFlush must implement stopMoving';
@@ -73,17 +72,18 @@ var Toilett = function() {
       thingToFlush.setPosition(sprite.x + 22, sprite.y);
       thingToFlushDown = thingToFlush;
       soundFlush.play();
-      // TODO on sound finished
-      onFinished();
     }
   };
+
+  this.onFlushDown = function(onFlushDown) {
+    soundFlush.onStop.add(onFlushDown);
+  }
 
   this.update = function() {
     if (thingToFlushDown) {
       var currentPosition = thingToFlushDown.getPosition();
       var isCompletelyFlushDown = currentPosition.y > sprite.position.y + (height / 2);
       if (isCompletelyFlushDown) {
-        thingToFlushDown.kill();
         thingToFlushDown = false;
       } else {
         thingToFlushDown.setPosition(currentPosition.x, currentPosition.y + 2);

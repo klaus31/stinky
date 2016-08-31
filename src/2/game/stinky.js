@@ -14,9 +14,13 @@ var Stinky = function() {
   // FIXME this is dirty, because it assumes a flying stinky at first position
   var inThrowMode = true;
   var gravity;
+  var onRecreate;
 
   this.getWidth = function() {
     return width;
+  }
+  this.onRecreate = function(func) {
+    onRecreate =func;
   }
   this.getHeight = function() {
     return height;
@@ -138,6 +142,7 @@ var Stinky = function() {
     if (positionHistorie.length != 1) {
       me.stopMoving();
     }
+    if(onRecreate) onRecreate();
   }
 
   this.getSprite = function() {

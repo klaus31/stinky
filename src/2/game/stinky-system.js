@@ -57,9 +57,17 @@ var StinkySystem = function() {
     toilet.create();
     stinky.create(hole.stinky.options);
     stinkyThrow.create();
+    stinky.onRecreate(toilet.postcreate);
     toilet.postcreate();
     platforms.onWallHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
+
+    toilet.onFlushDown(function() {
+      stinkyPoints.incrementPoints();
+      hole.playedAlready = true;
+      game.state.start('Result');
+    });
+
   };
 
   var onGreenHit = function() {
@@ -74,11 +82,7 @@ var StinkySystem = function() {
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
         stinky.markAsWillBeKilled();
-        toilet.flushDown(stinky, function() {
-          stinkyPoints.incrementPoints();
-          hole.playedAlready = true;
-          game.state.start('Result');
-        });
+        toilet.flushDown(stinky);
       } else if (toilet.isHit(stinky).any()) {
         stinky.markAsWillBeKilled();
         stinky.explode();
