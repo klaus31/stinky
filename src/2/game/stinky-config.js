@@ -53,7 +53,7 @@ var StinkyConfig = {
       stinky: {
         options: {
           position: {
-            x: 10,
+            x: 50,
             y: 500
           },
           gravity: 200
@@ -105,7 +105,7 @@ var StinkyConfig = {
     }, {
       layerName: 'level-8',
       name: 'TODO level 8',
-      level: 1,
+      level: 9,
       background: {
         color: '#002211'
       },
@@ -121,22 +121,22 @@ var StinkyConfig = {
       par: 3
     }, {
       layerName: 'level-9',
-      name: 'TODO level 9',
-      level: 9,
+      name: 'learn to fly',
+      level: 10,
       stinky: {
         options: {
           position: {
-            x: 10,
-            y: 500
+            x: 850,
+            y: 200
           },
           gravity: 200
         }
       },
-      par: 5
+      par: 15
     }, {
       layerName: 'level-10',
       name: 'TODO level 10',
-      level: 10,
+      level: 1,
       stinky: {
         options: {
           position: {
