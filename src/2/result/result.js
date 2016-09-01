@@ -11,6 +11,20 @@ var Result = function(parkour) {
     game.load.image('result-bg', 'result/result-bg.png');
     // TODO check game.load.atlas for button
     game.load.image('next-button', 'result/next-button.png');
+
+    var width = 597;
+    var atlasBuilder = new AtlasBuilder('results', width, 1046);
+    atlasBuilder.addFrame('hole-in-one', 0, 0, width, 90);
+    atlasBuilder.addFrame('super-albatross', 0, 940, width, 105);
+    atlasBuilder.addFrame('albatross', 0, 92, width, 105);
+    atlasBuilder.addFrame('eagle', 0, 197, width, 103);
+    atlasBuilder.addFrame('birdie', 0, 300, width, 94);
+    atlasBuilder.addFrame('par', 0, 386, width, 114);
+    atlasBuilder.addFrame('bogey', 0, 488, width, 102);
+    atlasBuilder.addFrame('double-bogey', 0, 602, width, 114);
+    atlasBuilder.addFrame('triple-bogey', 0, 718, width, 114);
+    atlasBuilder.addFrame('shitty', 0, 835, width, 90);
+    game.load.atlas('results', 'result/results.png', null, atlasBuilder.build());
   }
 
   var nextLevel = function() {
@@ -70,7 +84,8 @@ var Result = function(parkour) {
         createRow(rowPositions[i].x + CELL_PADDING, y, headlines, textstyle);
       };
     }
-    var createHeadlines = function() {
+
+    var createTableHeadlines = function() {
       var textstyle = {
         fontSize: '16px',
         fill: '#000',
@@ -82,19 +97,49 @@ var Result = function(parkour) {
       createRow(rowPositions[0].x + CELL_PADDING, y, headlines, textstyle);
       createRow(rowPositions[9].x + CELL_PADDING, y, headlines, textstyle);
     }
+
     var createTable = function() {
       var i = rowPositions.length;
       while (i--) {
         game.add.sprite(rowPositions[i].x, rowPositions[i].y, 'table-row');
       }
     }
+
+    var createResultHeadline = function() {
+      var resultNames = game.add.sprite((game.world.width - 597) / 2, 40, 'results');
+      var hole = DataUtil.getLastHolePlayed();
+      var handicap = hole.tries - hole.par;
+      if (hole.tries == 1) {
+        resultNames.frameName = 'hole-in-one';
+      } else if (handicap < -3) {
+        resultNames.frameName = 'super-albatross';
+      } else if (handicap == -3) {
+        resultNames.frameName = 'albatross';
+      } else if (handicap == -2) {
+        resultNames.frameName = 'eagle';
+      } else if (handicap == -1) {
+        resultNames.frameName = 'birdie';
+      } else if (handicap == 0) {
+        resultNames.frameName = 'par';
+      } else if (handicap == 1) {
+        resultNames.frameName = 'bogey';
+      } else if (handicap == 2) {
+        resultNames.frameName = 'double-bogey';
+      } else if (handicap == 3) {
+        resultNames.frameName = 'triple-bogey';
+      } else {
+        resultNames.frameName = 'shitty';
+      }
+    }
+
     game.add.sprite(0, 0, 'result-bg');
     // TODO when game.load.atlas check:
     // game.add.button(400, 600, 'start-button', startGame, game, 'buttonOver', 'buttonOut', 'buttonOver');
     game.add.button(0, 0, 'next-button', nextLevel, game);
     createTable();
-    createHeadlines();
+    createTableHeadlines();
     createTableContents();
+    createResultHeadline();
   }
 
   this.update = function() {}

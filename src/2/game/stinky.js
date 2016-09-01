@@ -20,7 +20,7 @@ var Stinky = function() {
     return width;
   }
   this.onRecreate = function(func) {
-    onRecreate =func;
+    onRecreate = func;
   }
   this.getHeight = function() {
     return height;
@@ -142,7 +142,7 @@ var Stinky = function() {
     if (positionHistorie.length != 1) {
       me.stopMoving();
     }
-    if(onRecreate) onRecreate();
+    if (onRecreate) onRecreate();
   }
 
   this.getSprite = function() {

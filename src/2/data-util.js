@@ -24,6 +24,10 @@ DataUtil.getNextHole = function() {
   return DataUtil.getHole(DataUtil.getHolesPlayed().length + 1);
 }
 
+DataUtil.getLastHolePlayed = function() {
+  return DataUtil.getHole(DataUtil.getHolesPlayed().length);
+}
+
 DataUtil.getNextLevel = function() {
   return DataUtil.getNextHole().level;
 }

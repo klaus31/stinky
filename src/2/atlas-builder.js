@@ -37,7 +37,7 @@ var AtlasBuilder = function(image, w, h) {
       }
     }
   }
-  
+
   this.build = function() {
     return {
       meta: meta,
