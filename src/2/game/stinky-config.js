@@ -4,6 +4,9 @@ var StinkyConfig = {
     holes: [{
       layerName: 'trees',
       name: 'four trees',
+      background: {
+        image: 'game/parkours/starter/4-trees.jpg'
+      },
       level: 2,
       stinky: {
         options: {
@@ -103,6 +106,9 @@ var StinkyConfig = {
       layerName: 'level-8',
       name: 'TODO level 8',
       level: 1,
+      background: {
+        color: '#002211'
+      },
       stinky: {
         options: {
           position: {
