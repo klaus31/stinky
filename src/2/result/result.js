@@ -14,7 +14,6 @@ var Result = function(parkour) {
   this.preload = function() {
     game.load.image(backgroundImageName, backgroundImageFile, 99, 55);
     game.load.image('table-row', 'result/table-row.png');
-    game.load.image('result-bg', 'result/result-bg.png');
 
     var width = 597;
     var atlasBuilder = new AtlasBuilder('results', width, 1046);
