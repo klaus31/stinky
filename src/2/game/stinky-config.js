@@ -18,7 +18,7 @@ var StinkyConfig = {
     }, {
       layerName: 'green-floor',
       name: 'green floor',
-      level: 1,
+      level: 5,
       stinky: {
         options: {
           position: {
@@ -59,13 +59,13 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-5',
-      name: 'TODO level 5',
-      level: 5,
+      name: 'labyrinth',
+      level: 6,
       stinky: {
         options: {
           position: {
-            x: 10,
-            y: 500
+            x: 90,
+            y: 395
           },
           gravity: 200
         }
@@ -74,12 +74,12 @@ var StinkyConfig = {
     }, {
       layerName: 'level-6',
       name: 'TODO level 6',
-      level: 6,
+      level: 7,
       stinky: {
         options: {
           position: {
             x: 10,
-            y: 500
+            y: 300
           },
           gravity: 200
         }
@@ -87,8 +87,8 @@ var StinkyConfig = {
       par: 5
     }, {
       layerName: 'level-7',
-      name: 'TODO level 7',
-      level: 7,
+      name: 'Frogger',
+      level: 8,
       stinky: {
         options: {
           position: {
@@ -102,12 +102,12 @@ var StinkyConfig = {
     }, {
       layerName: 'level-8',
       name: 'TODO level 8',
-      level: 8,
+      level: 1,
       stinky: {
         options: {
           position: {
-            x: 10,
-            y: 500
+            x: 850,
+            y: 50
           },
           gravity: 200
         }
@@ -246,8 +246,8 @@ var StinkyConfig = {
       stinky: {
         options: {
           position: {
-            x: 10,
-            y: 500
+            x: 60,
+            y: 395
           },
           gravity: 200
         }
