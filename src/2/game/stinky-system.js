@@ -6,17 +6,12 @@ var StinkySystem = function() {
 
   var stinky = new Stinky();
   var toilet = new Toilett();
-  var background;
-  var backgroundColor = '#FF77DD';
-  var backgroundImageName = 'toilet-paper-bg';
-  var backgroundImageFile = 'game/' + backgroundImageName + '.png';
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
   var platforms = new Platforms(hole);
 
   this.preload = function() {
-    game.load.image(backgroundImageName, backgroundImageFile, 150, 150);
     board.preload();
     toilet.preload();
     stinky.preload();
@@ -44,8 +39,7 @@ var StinkySystem = function() {
   this.create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.stage.backgroundColor = backgroundColor;
-    background = game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
+    game.stage.backgroundColor = '#000';
 
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);
@@ -90,9 +84,6 @@ var StinkySystem = function() {
     }
     toilet.update();
     stinky.update();
-
-    background.tilePosition.x -= 2;
-    background.tilePosition.y -= 1;
   };
 
   this.render = function() {

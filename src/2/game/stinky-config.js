@@ -112,7 +112,7 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 3
     }, {
       layerName: 'level-9',
       name: 'TODO level 9',
@@ -252,7 +252,7 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 10
     }]
   }]
 }

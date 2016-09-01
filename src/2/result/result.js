@@ -6,11 +6,15 @@ var Result = function(parkour) {
   const TABLE_Y = 200;
   const CELL_PADDING = 10;
 
+  var backgroundImageName = 'toilet-paper-bg';
+  var backgroundImageFile = 'result/' + backgroundImageName + '.png';
+  var background;
+  var backgroundColor = '#FF77DD';
+
   this.preload = function() {
+    game.load.image(backgroundImageName, backgroundImageFile, 99, 55);
     game.load.image('table-row', 'result/table-row.png');
     game.load.image('result-bg', 'result/result-bg.png');
-    // TODO check game.load.atlas for button
-    game.load.image('next-button', 'result/next-button.png');
 
     var width = 597;
     var atlasBuilder = new AtlasBuilder('results', width, 1046);
@@ -25,6 +29,12 @@ var Result = function(parkour) {
     atlasBuilder.addFrame('triple-bogey', 0, 718, width, 114);
     atlasBuilder.addFrame('shitty', 0, 835, width, 90);
     game.load.atlas('results', 'result/results.png', null, atlasBuilder.build());
+
+    var atlasBuilder = new AtlasBuilder('next-buttons', 70, 214);
+    atlasBuilder.addFrame('normal', 0, 0, 70, 70);
+    atlasBuilder.addFrame('hover', 0,73, 70, 70);
+    atlasBuilder.addFrame('down', 0, 214-70, 70, 70);
+    game.load.atlas('next-buttons', 'result/next-buttons.png', null, atlasBuilder.build());
   }
 
   var nextLevel = function() {
@@ -132,15 +142,17 @@ var Result = function(parkour) {
       }
     }
 
-    game.add.sprite(0, 0, 'result-bg');
-    // TODO when game.load.atlas check:
-    // game.add.button(400, 600, 'start-button', startGame, game, 'buttonOver', 'buttonOut', 'buttonOver');
-    game.add.button(0, 0, 'next-button', nextLevel, game);
+    game.stage.backgroundColor = backgroundColor;
+    background = game.add.tileSprite(0, 0, game.world.width, game.world.height, backgroundImageName);
     createTable();
     createTableHeadlines();
     createTableContents();
     createResultHeadline();
+    game.add.button(game.world.width-120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
   }
 
-  this.update = function() {}
+  this.update = function() {
+    background.tilePosition.x -= 2;
+    background.tilePosition.y -= 1;
+  }
 }
