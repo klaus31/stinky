@@ -1,8 +1,7 @@
 var Board = function() {
 
   var me = this;
-  var countThrown;
-  var countHit;
+  var text;
   var currentPar;
 
   const width = 250;
@@ -24,13 +23,12 @@ var Board = function() {
       fill: '#000',
       font: 'Courier'
     };
-    countThrown = game.add.text(game.world.width / 2, 4, 0, textstyle);
-    countHit = game.add.text(game.world.width / 2 + 50, 4, 0, textstyle);
+    text = game.add.text(posX+50, 10, 0, textstyle);
+    me.updateScore(0);
   }
 
-  this.updateScore = function(thrown, hits) {
-    countThrown.text = thrown + '/' + currentPar;
-    countHit.text = hits;
+  this.updateScore = function(tries) {
+    text.text = 'Par: ' + currentPar + '   ' + 'Tries: ' + tries;
   }
 
 };

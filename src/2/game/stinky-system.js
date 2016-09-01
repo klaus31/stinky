@@ -37,8 +37,8 @@ var StinkySystem = function() {
     if (stinkyThrow.isStarted()) {
       stinkyThrow.end(pointer);
       stinky.throw(stinkyThrow);
-      stinkyPoints.onIncrement(function(tries, hits) {
-        board.updateScore(tries, hits);
+      stinkyPoints.onIncrement(function(tries) {
+        board.updateScore(tries);
         hole.tries = tries;
       });
       stinkyPoints.incrementTries();
@@ -69,7 +69,6 @@ var StinkySystem = function() {
     platforms.onGreenHit(onGreenHit);
 
     toilet.onFlushDown(function() {
-      stinkyPoints.incrementPoints();
       hole.playedAlready = true;
       game.state.start('Result');
     });
