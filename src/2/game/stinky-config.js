@@ -2,7 +2,7 @@ var StinkyConfig = {
   parkours: [{
     name: 'starter',
     holes: [{
-      layerName: 'trees',
+      layerName: 'c',
       name: 'four trees',
       background: {
         image: 'game/parkours/starter/4-trees.jpg'
@@ -19,7 +19,7 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'green-floor',
+      layerName: 'a',
       name: 'green floor',
       level: 5,
       stinky: {
@@ -33,7 +33,7 @@ var StinkyConfig = {
       },
       par: 2
     }, {
-      layerName: 'house-and-man',
+      layerName: 'b',
       name: 'house + man',
       level: 3,
       stinky: {
@@ -47,8 +47,8 @@ var StinkyConfig = {
       },
       par: 4
     }, {
-      layerName: 'level-4',
-      name: 'TODO level 4',
+      layerName: 'd',
+      name: 'snake',
       level: 4,
       stinky: {
         options: {
@@ -61,7 +61,7 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-5',
+      layerName: 'e',
       name: 'labyrinth',
       level: 6,
       stinky: {
@@ -73,10 +73,10 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 15
     }, {
-      layerName: 'level-6',
-      name: 'TODO level 6',
+      layerName: 'f',
+      name: 'sculpture',
       level: 7,
       stinky: {
         options: {
@@ -89,7 +89,7 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-7',
+      layerName: 'g',
       name: 'Frogger',
       level: 8,
       stinky: {
@@ -103,8 +103,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-8',
-      name: 'TODO level 8',
+      layerName: 'h',
+      name: 'deerstand',
       level: 9,
       background: {
         color: '#002211'
@@ -120,7 +120,7 @@ var StinkyConfig = {
       },
       par: 3
     }, {
-      layerName: 'level-9',
+      layerName: 'i',
       name: 'learn to fly',
       level: 10,
       stinky: {
@@ -134,7 +134,7 @@ var StinkyConfig = {
       },
       par: 15
     }, {
-      layerName: 'level-10',
+      layerName: 'j',
       name: 'over mountain',
       level: 1,
       stinky: {
@@ -146,10 +146,10 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 15
+      par: 12
     }, {
-      layerName: 'level-11',
-      name: 'TODO level 11',
+      layerName: 'k',
+      name: 'beer',
       level: 11,
       stinky: {
         options: {
@@ -162,8 +162,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-12',
-      name: 'TODO level 12',
+      layerName: 'l',
+      name: 'over boxes',
       level: 12,
       stinky: {
         options: {
@@ -174,29 +174,29 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 4
     }, {
-      layerName: 'level-13',
-      name: 'TODO level 13',
-      level: 13,
-      stinky: {
-        options: {
-          position: {
-            x: 10,
-            y: 500
-          },
-          gravity: 200
-        }
-      },
-      par: 5
-    }, {
-      layerName: 'level-14',
-      name: 'TODO level 14',
+      layerName: 'm',
+      name: 'spider shit 2',
       level: 14,
       stinky: {
         options: {
           position: {
-            x: 10,
+            x: 30,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 3
+    }, {
+      layerName: 'n',
+      name: 'spider shit 1',
+      level: 13,
+      stinky: {
+        options: {
+          position: {
+            x: 30,
             y: 500
           },
           gravity: 200
@@ -204,8 +204,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-15',
-      name: 'TODO level 15',
+      layerName: 'o',
+      name: 'shower 1',
       level: 15,
       stinky: {
         options: {
@@ -218,8 +218,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-16',
-      name: 'TODO level 16',
+      layerName: 'p',
+      name: 'shower 2',
       level: 16,
       stinky: {
         options: {
@@ -232,8 +232,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-17',
-      name: 'TODO level 17',
+      layerName: 'q',
+      name: 'needle',
       level: 17,
       stinky: {
         options: {
@@ -246,8 +246,8 @@ var StinkyConfig = {
       },
       par: 5
     }, {
-      layerName: 'level-18',
-      name: 'TODO level 18',
+      layerName: 'r',
+      name: 'mole shit',
       level: 18,
       stinky: {
         options: {

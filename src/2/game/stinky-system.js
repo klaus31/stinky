@@ -57,7 +57,7 @@ var StinkySystem = function() {
     game.input.onUp.add(onGameInputUp, this);
 
     stinkyPoints.onIncrement(board.updateScore);
-
+console.info(hole.layerName); // FIXME raus
     platforms.create(hole.layerName);
     board.create(hole.par);
     toilet.create();
