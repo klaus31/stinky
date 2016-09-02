@@ -18,14 +18,13 @@ var StinkySystem = function() {
     toilet.preload();
     stinky.preload();
     platforms.preload();
-    if (hole.background) {
-      if (hole.background.color) {
-        backgroundColor = hole.background.color;
-      }
-      if (hole.background.image) {
-        backgroundImage = 'bg-image';
-        game.load.image(backgroundImage, hole.background.image);
-      }
+    if (hole.bgcolor) {
+      backgroundColor = hole.bgcolor;
+    }
+    if (hole.bgimage) {
+      backgroundImage = 'bg-image';
+      // TODO this is theme specific
+      game.load.image(backgroundImage, 'game/parkours/starter/' + hole.layerName + '.png');
     }
   };
 

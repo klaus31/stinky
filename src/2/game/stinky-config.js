@@ -4,9 +4,7 @@ var StinkyConfig = {
     holes: [{
       layerName: 'c',
       name: 'four trees',
-      background: {
-        image: 'game/parkours/starter/4-trees.jpg'
-      },
+      bgimage: true,
       level: 16,
       stinky: {
         options: {
@@ -21,9 +19,7 @@ var StinkyConfig = {
     }, {
       layerName: 'a',
       name: 'green floor',
-      background: {
-        color: '#004'
-      },
+      bgcolor: '#004',
       level: 1,
       stinky: {
         options: {
@@ -109,9 +105,7 @@ var StinkyConfig = {
       layerName: 'h',
       name: 'deerstand',
       level: 7,
-      background: {
-        color: '#002211'
-      },
+      bgcolor: '#002211',
       stinky: {
         options: {
           position: {
@@ -252,9 +246,7 @@ var StinkyConfig = {
       layerName: 'r',
       name: 'mole shit',
       level: 18,
-      background: {
-        color: '#000'
-      },
+      bgcolor: '#000',
       stinky: {
         options: {
           position: {
