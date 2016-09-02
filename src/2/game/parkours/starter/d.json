@@ -38,11 +38,11 @@
         },
         {
          "firstgid":2,
-         "image":"wall.png",
+         "image":"fire.png",
          "imageheight":15,
          "imagewidth":15,
          "margin":0,
-         "name":"wall",
+         "name":"fire",
          "properties":
             {
 

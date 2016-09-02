@@ -10,7 +10,7 @@ var Platforms = function(hole) {
     var basicDir = 'game/parkours/' + Data.parkour.name + '/';
     game.load.tilemap('map', basicDir + hole.layerName + '.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('green', basicDir + 'green.png');
-    game.load.image('wall', basicDir + 'wall.png');
+    game.load.image('fire', basicDir + 'fire.png');
   }
 
   this.create = function(layername) {
@@ -19,7 +19,7 @@ var Platforms = function(hole) {
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('green');
-    map.addTilesetImage('wall');
+    map.addTilesetImage('fire');
   }
 
   this.onWallHit = function(func) {
