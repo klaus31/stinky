@@ -135,7 +135,7 @@ var StinkyConfig = {
       par: 15
     }, {
       layerName: 'level-10',
-      name: 'TODO level 10',
+      name: 'over mountain',
       level: 1,
       stinky: {
         options: {
@@ -146,7 +146,7 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 15
     }, {
       layerName: 'level-11',
       name: 'TODO level 11',

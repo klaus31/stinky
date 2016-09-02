@@ -102,7 +102,7 @@ var Result = function(parkour) {
         fontWeight: 'bold'
       };
       var y = rowPositions[0].y - CELL_PADDING - 16;
-      var headlines = ['Hole', 'Par', 'Tries', 'HC', 'HCT']; // FIXME HC für Handicap und HCT für Handicap Total rafft niemand
+      var headlines = ['Hole', 'Par', 'Strokes', 'Hole', 'HCP'];
       createRow(rowPositions[0].x + CELL_PADDING, y, headlines, textstyle);
       createRow(rowPositions[9].x + CELL_PADDING, y, headlines, textstyle);
     }
