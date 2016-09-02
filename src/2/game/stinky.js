@@ -15,6 +15,7 @@ var Stinky = function() {
   var inThrowMode = true;
   var gravity;
   var onRecreate;
+  var soundExplode;
 
   this.getWidth = function() {
     return width;
@@ -28,6 +29,7 @@ var Stinky = function() {
 
   this.preload = function() {
     game.load.spritesheet(name, file, width, height);
+    game.load.audio('sound-explode', 'game/stinky-explode.mp3');
   }
 
   this.markAsWillBeKilled = function() {
@@ -45,10 +47,17 @@ var Stinky = function() {
     }
   }
 
+  var exploding = false;
+
   this.explode = function() {
-    me.stopMoving();
-    var ani = sprite.animations.play('explode');
-    ani.killOnComplete = true;
+    if(!exploding) {
+      me.stopMoving();
+      console.info('explode')
+      soundExplode.play();
+      var ani = sprite.animations.play('explode');
+      ani.killOnComplete = true;
+      exploding = true;
+    }
   }
 
   var hitWorldBounds = function() {
@@ -73,6 +82,7 @@ var Stinky = function() {
   this.create = function(options) {
     if (!options.position) throw 'need a starting position';
     if (!options.gravity) throw 'need a gravity';
+    soundExplode = game.add.audio('sound-explode');
     gravity = options.gravity;
     isBeingKilled = false;
     sprite = game.add.sprite(options.position.x, options.position.y, name);
@@ -80,7 +90,10 @@ var Stinky = function() {
     sprite.body.collideWorldBounds = true;
     sprite.animations.add('infinite', [0, 1, 2, 1], 5, true);
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
-    sprite.events.onKilled.add(recreate);
+    sprite.events.onKilled.add(function(){
+      recreate();
+      exploding = false;
+    });
     var i = onKilledFuncs.length;
     while (i--) me.onKilledAdd(onKilledFuncs[i]);
     sprite.animations.play('infinite');

@@ -27,9 +27,10 @@ var Splash = function() {
     }
     game.stage.backgroundColor = '#FFF';
     showPresents();
-    window.setTimeout(playAssLeave, 2000);
-    window.setTimeout(showGolf, 7000);
-    window.setTimeout(showMainMenu, 10000);
+    var timeline = 0;
+    window.setTimeout(playAssLeave, timeline += 1000);
+    window.setTimeout(showGolf, timeline += 4500);
+    window.setTimeout(showMainMenu, timeline += 3000);
   }
   this.update = function() {}
 
