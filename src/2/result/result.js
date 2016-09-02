@@ -149,7 +149,7 @@ var Result = function(parkour) {
     createTableContents();
     createResultHeadline();
 
-    if(DataUtil.isParkourFinished()) {
+    if (DataUtil.isParkourFinished()) {
       // TODO start a firework
       game.add.button(game.world.width - 120, 80, 'main-menu-buttons', mainMenu, game, 'hover', 'normal', 'down');
     } else {

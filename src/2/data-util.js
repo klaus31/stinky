@@ -26,7 +26,7 @@ DataUtil.isParkourFinished = function() {
 
 DataUtil.getNextHole = function() {
   var holesPlayed = DataUtil.getHolesPlayed().length;
-  if(holesPlayed == DataUtil.PARKOUR_LENGTH) return null;
+  if (holesPlayed == DataUtil.PARKOUR_LENGTH) return null;
   else return DataUtil.getHole(holesPlayed + 1);
 }
 

@@ -32,7 +32,7 @@ var Board = function() {
     sprite.alpha = 1;
     text.alpha = 1;
     text.text = 'Par: ' + currentPar + '   ' + 'Strokes: ' + tries;
-    window.setTimeout(function(){
+    window.setTimeout(function() {
       sprite.alpha = 0;
       text.alpha = 0;
     }, 5000);
