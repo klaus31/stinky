@@ -22,9 +22,9 @@ var StinkyConfig = {
       layerName: 'a',
       name: 'green floor',
       background: {
-        color: '#FFA'
+        color: '#004'
       },
-      level: 18,
+      level: 1,
       stinky: {
         options: {
           position: {
@@ -251,7 +251,7 @@ var StinkyConfig = {
     }, {
       layerName: 'r',
       name: 'mole shit',
-      level: 1,
+      level: 18,
       background: {
         color: '#000'
       },

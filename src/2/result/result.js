@@ -34,6 +34,7 @@ var Result = function(parkour) {
     atlasBuilder.addFrame('hover', 0, 73, 70, 70);
     atlasBuilder.addFrame('down', 0, 214 - 70, 70, 70);
     game.load.atlas('next-buttons', 'result/next-buttons.png', null, atlasBuilder.build());
+    game.load.atlas('main-menu-buttons', 'result/next-buttons.png', null, atlasBuilder.build());
   }
 
   var nextLevel = function() {
@@ -150,6 +151,7 @@ var Result = function(parkour) {
 
     if(DataUtil.isParkourFinished()) {
       // TODO start a firework
+      game.add.button(game.world.width - 120, 80, 'main-menu-buttons', mainMenu, game, 'hover', 'normal', 'down');
     } else {
       game.add.button(game.world.width - 120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
     }
@@ -158,5 +160,10 @@ var Result = function(parkour) {
   this.update = function() {
     background.tilePosition.x -= 2;
     background.tilePosition.y -= 1;
+  }
+
+  var mainMenu = function() {
+    // TODO this is a browser solution only
+    window.location.reload();
   }
 }
