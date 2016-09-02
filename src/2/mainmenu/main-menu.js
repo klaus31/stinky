@@ -34,7 +34,7 @@ var MainMenu = function() {
     game.add.sprite(0, 0, 'parkour-1');
     game.add.sprite(game.world.width / 2, 0, 'parkour-2');
 
-    game.add.button(207, 71, 'parkour-1-buttons', startGame, game, 'hover', 'normal', 'down');
+    game.add.button(207, 71, 'parkour-1-buttons', startGameParkourLeft, game, 'hover', 'normal', 'down');
     game.add.button(game.world.width / 2 + 220, 143, 'parkour-2-buttons', payFirst, game, 'hover', 'normal', 'down');
     spriteParkourLeftCharflush = game.add.sprite(230, 440, 'parkourLeftCharflush');
     spriteParkourLeftCharflush.animations.add('parkourLeftCharflushA', null, 5);
@@ -43,25 +43,26 @@ var MainMenu = function() {
     flushShound = game.add.audio('toilet-flush');
   }
 
+  var startGameParkourLeft = function() {
+    startGame(StinkyConfig.parkours[0]);
+  }
+
   this.update = function() {}
 
   var payFirst = function() {
     // TODO just a dummy
-    window.alert('Please give money ...');
+    console.info('Please give money ...');
   }
 
-  var startGame = function() {
+  var startGame = function(parkour) {
     flushShound.play();
     var ani = spriteParkourLeftCharflush.animations.play('parkourLeftCharflushA');
     ani.killOnComplete = true;
     spriteParkourLeftCharflush.events.onKilled.add(
       function() {
-        // TODO set data from pressed parkour button
-
-        var parkour = 0;
-        Data.parkour = StinkyConfig.parkours[parkour];
-        game.state.add('game-' + parkour + '-1', new StinkySystem());
-        game.state.start('game-' + parkour + '-1');
+        Data.parkour = parkour;
+        game.state.add('game-' + parkour.name + '-1', new StinkySystem());
+        game.state.start('game-' + parkour.name + '-1');
       });
   }
 
