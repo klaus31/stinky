@@ -7,7 +7,7 @@ var StinkyConfig = {
       background: {
         image: 'game/parkours/starter/4-trees.jpg'
       },
-      level: 2,
+      level: 16,
       stinky: {
         options: {
           position: {
@@ -21,7 +21,10 @@ var StinkyConfig = {
     }, {
       layerName: 'a',
       name: 'green floor',
-      level: 5,
+      background: {
+        color: '#FFA'
+      },
+      level: 18,
       stinky: {
         options: {
           position: {
@@ -35,7 +38,7 @@ var StinkyConfig = {
     }, {
       layerName: 'b',
       name: 'house + man',
-      level: 3,
+      level: 2,
       stinky: {
         options: {
           position: {
@@ -49,7 +52,7 @@ var StinkyConfig = {
     }, {
       layerName: 'd',
       name: 'snake',
-      level: 4,
+      level: 9,
       stinky: {
         options: {
           position: {
@@ -63,7 +66,7 @@ var StinkyConfig = {
     }, {
       layerName: 'e',
       name: 'labyrinth',
-      level: 6,
+      level: 17,
       stinky: {
         options: {
           position: {
@@ -77,7 +80,7 @@ var StinkyConfig = {
     }, {
       layerName: 'f',
       name: 'sculpture',
-      level: 7,
+      level: 6,
       stinky: {
         options: {
           position: {
@@ -91,7 +94,7 @@ var StinkyConfig = {
     }, {
       layerName: 'g',
       name: 'Frogger',
-      level: 8,
+      level: 4,
       stinky: {
         options: {
           position: {
@@ -105,7 +108,7 @@ var StinkyConfig = {
     }, {
       layerName: 'h',
       name: 'deerstand',
-      level: 9,
+      level: 7,
       background: {
         color: '#002211'
       },
@@ -122,7 +125,7 @@ var StinkyConfig = {
     }, {
       layerName: 'i',
       name: 'learn to fly',
-      level: 10,
+      level: 12,
       stinky: {
         options: {
           position: {
@@ -136,7 +139,7 @@ var StinkyConfig = {
     }, {
       layerName: 'j',
       name: 'over mountain',
-      level: 1,
+      level: 14,
       stinky: {
         options: {
           position: {
@@ -164,7 +167,7 @@ var StinkyConfig = {
     }, {
       layerName: 'l',
       name: 'over boxes',
-      level: 12,
+      level: 8,
       stinky: {
         options: {
           position: {
@@ -178,21 +181,7 @@ var StinkyConfig = {
     }, {
       layerName: 'm',
       name: 'spider shit 2',
-      level: 14,
-      stinky: {
-        options: {
-          position: {
-            x: 30,
-            y: 500
-          },
-          gravity: 200
-        }
-      },
-      par: 3
-    }, {
-      layerName: 'n',
-      name: 'spider shit 1',
-      level: 13,
+      level: 15,
       stinky: {
         options: {
           position: {
@@ -204,9 +193,23 @@ var StinkyConfig = {
       },
       par: 5
     }, {
+      layerName: 'n',
+      name: 'spider shit 1',
+      level: 3,
+      stinky: {
+        options: {
+          position: {
+            x: 30,
+            y: 500
+          },
+          gravity: 200
+        }
+      },
+      par: 3
+    }, {
       layerName: 'o',
       name: 'shower 1',
-      level: 15,
+      level: 10,
       stinky: {
         options: {
           position: {
@@ -220,7 +223,7 @@ var StinkyConfig = {
     }, {
       layerName: 'p',
       name: 'shower 2',
-      level: 16,
+      level: 13,
       stinky: {
         options: {
           position: {
@@ -234,7 +237,7 @@ var StinkyConfig = {
     }, {
       layerName: 'q',
       name: 'needle',
-      level: 17,
+      level: 5,
       stinky: {
         options: {
           position: {
@@ -244,11 +247,14 @@ var StinkyConfig = {
           gravity: 200
         }
       },
-      par: 5
+      par: 2
     }, {
       layerName: 'r',
       name: 'mole shit',
-      level: 18,
+      level: 1,
+      background: {
+        color: '#000'
+      },
       stinky: {
         options: {
           position: {

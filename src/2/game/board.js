@@ -3,6 +3,7 @@ var Board = function() {
   var me = this;
   var text;
   var currentPar;
+  var sprite;
 
   const width = 250;
   const height = 40;
@@ -15,20 +16,26 @@ var Board = function() {
 
   this.create = function(par) {
     currentPar = par;
-    var posX = game.world.width / 2 - (width / 2);
+    var posX = 0;
     var posY = 0;
-    image = game.add.sprite(posX, posY, name);
+    sprite = game.add.sprite(posX, posY, name);
     var textstyle = {
-      fontSize: '16px',
+      fontSize: '12px',
       fill: '#000',
       font: 'Courier'
     };
-    text = game.add.text(posX + 50, 10, 0, textstyle);
+    text = game.add.text(posX + 20, 2, 0, textstyle);
     me.updateScore(0);
   }
 
   this.updateScore = function(tries) {
-    text.text = 'Par: ' + currentPar + '   ' + 'Tries: ' + tries;
+    sprite.alpha = 1;
+    text.alpha = 1;
+    text.text = 'Par: ' + currentPar + '   ' + 'Strokes: ' + tries;
+    window.setTimeout(function(){
+      sprite.alpha = 0;
+      text.alpha = 0;
+    }, 5000);
   }
 
 };

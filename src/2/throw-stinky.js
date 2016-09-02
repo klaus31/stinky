@@ -10,7 +10,7 @@ if (window.location.hash.match('#[1-9][0-8]?$')) {
   while (i < level) {
     var hole = DataUtil.getHole(i);
     hole.playedAlready = true;
-    hole.tries = 99;
+    hole.tries = 1;
     i++;
   }
   game.state.add('game-' + Data.parkour.name + '-1', new StinkySystem());

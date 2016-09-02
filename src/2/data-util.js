@@ -20,8 +20,14 @@ DataUtil.getHolesOfParkour = function() {
   return DataUtil.getParkour().holes;
 }
 
+DataUtil.isParkourFinished = function() {
+  return DataUtil.getHolesPlayed().length == DataUtil.PARKOUR_LENGTH;
+}
+
 DataUtil.getNextHole = function() {
-  return DataUtil.getHole(DataUtil.getHolesPlayed().length + 1);
+  var holesPlayed = DataUtil.getHolesPlayed().length;
+  if(holesPlayed == DataUtil.PARKOUR_LENGTH) return null;
+  else return DataUtil.getHole(holesPlayed + 1);
 }
 
 DataUtil.getLastHolePlayed = function() {
@@ -35,7 +41,7 @@ DataUtil.getNextLevel = function() {
 DataUtil.getHolesPlayed = function() {
   var holes = [];
   var level = 1;
-  while (DataUtil.getHole(level).playedAlready) {
+  while (level <= DataUtil.PARKOUR_LENGTH && DataUtil.getHole(level).playedAlready) {
     holes.push(DataUtil.getHole(level));
     level++;
   }

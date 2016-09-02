@@ -63,7 +63,7 @@ var Result = function(parkour) {
       game.add.text(x + 185, y, cols[1], textstyle);
       game.add.text(x + 238, y, cols[2], textstyle);
       game.add.text(x + 301, y, cols[3], textstyle);
-      game.add.text(x + 359, y, cols[4], textstyle);
+      game.add.text(x + 350, y, cols[4], textstyle);
     }
     var createTableContents = function() {
       var textstyle = {
@@ -102,7 +102,7 @@ var Result = function(parkour) {
         fontWeight: 'bold'
       };
       var y = rowPositions[0].y - CELL_PADDING - 16;
-      var headlines = ['Hole', 'Par', 'Strokes', 'Hole', 'HCP'];
+      var headlines = ['Hole', 'Par', 'Strox', 'Hole', 'HCP'];
       createRow(rowPositions[0].x + CELL_PADDING, y, headlines, textstyle);
       createRow(rowPositions[9].x + CELL_PADDING, y, headlines, textstyle);
     }
@@ -147,7 +147,12 @@ var Result = function(parkour) {
     createTableHeadlines();
     createTableContents();
     createResultHeadline();
-    game.add.button(game.world.width - 120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
+
+    if(DataUtil.isParkourFinished()) {
+      // TODO start a firework
+    } else {
+      game.add.button(game.world.width - 120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
+    }
   }
 
   this.update = function() {
