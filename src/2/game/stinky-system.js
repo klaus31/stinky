@@ -63,7 +63,7 @@ var StinkySystem = function() {
     stinkyThrow.create();
     stinky.onRecreate(toilet.postcreate);
     toilet.postcreate();
-    platforms.onWallHit(stinky.explode);
+    platforms.onFireHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
 
     toilet.onFlushDown(function() {

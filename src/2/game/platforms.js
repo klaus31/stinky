@@ -22,7 +22,7 @@ var Platforms = function(hole) {
     map.addTilesetImage('fire');
   }
 
-  this.onWallHit = function(func) {
+  this.onFireHit = function(func) {
     map.setTileIndexCallback(ID_WALL, func, this);
   }
 
