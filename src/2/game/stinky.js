@@ -78,7 +78,7 @@ var Stinky = function() {
     sprite = game.add.sprite(options.position.x, options.position.y, name);
     game.physics.enable(sprite);
     sprite.body.collideWorldBounds = true;
-    sprite.animations.add('infinite', [0, 1, 2, 1], 10, true);
+    sprite.animations.add('infinite', [0, 1, 2, 1], 5, true);
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
     sprite.events.onKilled.add(recreate);
     var i = onKilledFuncs.length;
