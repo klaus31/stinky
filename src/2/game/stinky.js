@@ -50,9 +50,8 @@ var Stinky = function() {
   var exploding = false;
 
   this.explode = function() {
-    if(!exploding) {
+    if (!exploding) {
       me.stopMoving();
-      console.info('explode')
       soundExplode.play();
       var ani = sprite.animations.play('explode');
       ani.killOnComplete = true;
@@ -90,7 +89,7 @@ var Stinky = function() {
     sprite.body.collideWorldBounds = true;
     sprite.animations.add('infinite', [0, 1, 2, 1], 5, true);
     sprite.animations.add('explode', [3, 4, 5, 6, 7, 8, 9], 10, false);
-    sprite.events.onKilled.add(function(){
+    sprite.events.onKilled.add(function() {
       recreate();
       exploding = false;
     });
