@@ -23,7 +23,7 @@ var Board = function() {
       fill: '#000',
       font: 'Courier'
     };
-    text = game.add.text(posX+50, 10, 0, textstyle);
+    text = game.add.text(posX + 50, 10, 0, textstyle);
     me.updateScore(0);
   }
 

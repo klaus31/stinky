@@ -10,19 +10,19 @@ var StinkySystem = function() {
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
   var platforms = new Platforms(hole);
-  var backgroundColor='#AAA';
-  var backgroundImage=false;
+  var backgroundColor = '#AAA';
+  var backgroundImage = false;
 
   this.preload = function() {
     board.preload();
     toilet.preload();
     stinky.preload();
     platforms.preload();
-    if(hole.background) {
-      if(hole.background.color) {
+    if (hole.background) {
+      if (hole.background.color) {
         backgroundColor = hole.background.color;
       }
-      if(hole.background.image) {
+      if (hole.background.image) {
         backgroundImage = 'bg-image';
         game.load.image(backgroundImage, hole.background.image);
       }
@@ -50,8 +50,8 @@ var StinkySystem = function() {
   this.create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    if(backgroundColor) game.stage.backgroundColor = backgroundColor;
-    if(backgroundImage) game.add.sprite(0, 0, backgroundImage);
+    if (backgroundColor) game.stage.backgroundColor = backgroundColor;
+    if (backgroundImage) game.add.sprite(0, 0, backgroundImage);
 
     game.input.onDown.add(onGameInputDown, this);
     game.input.onUp.add(onGameInputUp, this);

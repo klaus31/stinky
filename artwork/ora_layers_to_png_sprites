@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir ../target
+set *ora
+for I; do
+  O=`echo $I | sed 's/ora$/png/'`
+  my_ora_to_sprite -i $I -o ../target/$O 
+done

@@ -31,8 +31,8 @@ var Result = function(parkour) {
 
     var atlasBuilder = new AtlasBuilder('next-buttons', 70, 214);
     atlasBuilder.addFrame('normal', 0, 0, 70, 70);
-    atlasBuilder.addFrame('hover', 0,73, 70, 70);
-    atlasBuilder.addFrame('down', 0, 214-70, 70, 70);
+    atlasBuilder.addFrame('hover', 0, 73, 70, 70);
+    atlasBuilder.addFrame('down', 0, 214 - 70, 70, 70);
     game.load.atlas('next-buttons', 'result/next-buttons.png', null, atlasBuilder.build());
   }
 
@@ -147,7 +147,7 @@ var Result = function(parkour) {
     createTableHeadlines();
     createTableContents();
     createResultHeadline();
-    game.add.button(game.world.width-120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
+    game.add.button(game.world.width - 120, 80, 'next-buttons', nextLevel, game, 'hover', 'normal', 'down');
   }
 
   this.update = function() {
