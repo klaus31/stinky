@@ -80,7 +80,8 @@ var Stinky = function() {
 
   this.create = function(options) {
     if (!options.position) throw 'need a starting position';
-    if (!options.gravity) throw 'need a gravity';
+    if (!options.gravity && options.gravity !== 0) throw 'need a gravity';
+    if (!options.bounce && options.bounce !== 0) throw 'need a bounce';
     soundExplode = game.add.audio('sound-explode');
     gravity = options.gravity;
     isBeingKilled = false;
@@ -97,6 +98,7 @@ var Stinky = function() {
     while (i--) me.onKilledAdd(onKilledFuncs[i]);
     sprite.animations.play('infinite');
     sprite.body.gravity.y = gravity;
+    sprite.body.bounce.set(options.bounce);
   }
 
   this.onKilledAdd = function(func) {

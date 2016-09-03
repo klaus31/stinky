@@ -51,8 +51,24 @@
          "tilecount":1,
          "tileheight":15,
          "tilewidth":15
+        },
+        {
+         "firstgid":3,
+         "image":"bound.png",
+         "imageheight":15,
+         "imagewidth":15,
+         "margin":0,
+         "name":"bound",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":15,
+         "tilewidth":15
         }],
  "tilewidth":15,
  "version":1,
  "width":64
-}
+ }

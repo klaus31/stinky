@@ -8,6 +8,7 @@ var StinkyConfig = {
       level: 16,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 138,
             y: 400
@@ -23,6 +24,7 @@ var StinkyConfig = {
       level: 1,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -37,6 +39,7 @@ var StinkyConfig = {
       level: 2,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -51,6 +54,7 @@ var StinkyConfig = {
       level: 9,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 50,
             y: 500
@@ -65,6 +69,7 @@ var StinkyConfig = {
       level: 17,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 90,
             y: 395
@@ -75,15 +80,17 @@ var StinkyConfig = {
       par: 15
     }, {
       layerName: 'f',
-      name: 'sculpture',
+      name: 'space',
       level: 6,
+      bgimage: true,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
-            y: 300
+            y: 560
           },
-          gravity: 200
+          gravity: 0
         }
       },
       par: 5
@@ -93,6 +100,7 @@ var StinkyConfig = {
       level: 4,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -108,6 +116,7 @@ var StinkyConfig = {
       bgcolor: '#002211',
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 850,
             y: 50
@@ -122,6 +131,7 @@ var StinkyConfig = {
       level: 12,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 850,
             y: 200
@@ -135,6 +145,7 @@ var StinkyConfig = {
       name: 'over mountain',
       level: 14,
       stinky: {
+        bounce: 1,
         options: {
           position: {
             x: 10,
@@ -150,6 +161,7 @@ var StinkyConfig = {
       level: 11,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -164,6 +176,7 @@ var StinkyConfig = {
       level: 8,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -178,6 +191,7 @@ var StinkyConfig = {
       level: 15,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 30,
             y: 500
@@ -192,6 +206,7 @@ var StinkyConfig = {
       level: 3,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 30,
             y: 500
@@ -206,6 +221,7 @@ var StinkyConfig = {
       level: 10,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -220,6 +236,7 @@ var StinkyConfig = {
       level: 13,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -234,6 +251,7 @@ var StinkyConfig = {
       level: 5,
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -249,6 +267,7 @@ var StinkyConfig = {
       bgcolor: '#000',
       stinky: {
         options: {
+          bounce: 1,
           position: {
             x: 60,
             y: 395

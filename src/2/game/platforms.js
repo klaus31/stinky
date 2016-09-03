@@ -1,7 +1,7 @@
 var Platforms = function(hole) {
 
   const ID_GREEN = 1;
-  const ID_WALL = 2;
+  const ID_FIRE = 2;
 
   var map;
   var layer;
@@ -11,6 +11,7 @@ var Platforms = function(hole) {
     game.load.tilemap('map', basicDir + hole.layerName + '.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('green', basicDir + 'green.png');
     game.load.image('fire', basicDir + 'fire.png');
+    game.load.image('bound', basicDir + 'bound.png');
   }
 
   this.create = function(layername) {
@@ -20,10 +21,11 @@ var Platforms = function(hole) {
     game.physics.enable(layer);
     map.addTilesetImage('green');
     map.addTilesetImage('fire');
-  }
+    map.addTilesetImage('bound');
+  };
 
   this.onFireHit = function(func) {
-    map.setTileIndexCallback(ID_WALL, func, this);
+    map.setTileIndexCallback(ID_FIRE, func, this);
   }
 
   this.onGreenHit = function(func) {
