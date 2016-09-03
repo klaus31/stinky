@@ -61,7 +61,7 @@ var ParkourInfo = function() {
         fontSize: '20px',
         fill: '#000',
         font: 'Courier',
-        tabs: [ 190 ]
+        tabs: [190]
       };
 
       var createListToShow = function() {
@@ -101,6 +101,6 @@ var ParkourInfo = function() {
 
   var closeInfo = function() {
     var i = thingsToToggle.length;
-    while(i--) thingsToToggle[i].alpha = 0;
+    while (i--) thingsToToggle[i].alpha = 0;
   }
 };
