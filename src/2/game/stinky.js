@@ -14,6 +14,7 @@ var Stinky = function() {
   // FIXME this is dirty, because it assumes a flying stinky at first position
   var inThrowMode = true;
   var gravity;
+  var bounce;
   var onRecreate;
   var soundExplode;
 
@@ -84,6 +85,7 @@ var Stinky = function() {
     if (!options.bounce && options.bounce !== 0) throw 'need a bounce';
     soundExplode = game.add.audio('sound-explode');
     gravity = options.gravity;
+    bounce = options.bounce;
     isBeingKilled = false;
     sprite = game.add.sprite(options.position.x, options.position.y, name);
     game.physics.enable(sprite);
@@ -150,7 +152,8 @@ var Stinky = function() {
     me.stopMoving();
     var options = {
       position: positionHistorie[positionHistorie.length - 1],
-      gravity: gravity
+      gravity: gravity,
+      bounce: bounce
     }
     me.create(options);
     if (positionHistorie.length != 1) {

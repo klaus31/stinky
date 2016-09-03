@@ -9,6 +9,7 @@ var StinkySystem = function() {
   var stinkyThrow = new Throw();
   var stinkyPoints = new StinkyPoints();
   var board = new Board();
+  var parkourInfo = new ParkourInfo();
   var platforms = new Platforms(hole);
   var backgroundColor = '#AAA';
   var backgroundImage = false;
@@ -17,6 +18,7 @@ var StinkySystem = function() {
     board.preload();
     toilet.preload();
     stinky.preload();
+    parkourInfo.preload();
     platforms.preload();
     if (hole.bgcolor) {
       backgroundColor = hole.bgcolor;
@@ -65,6 +67,7 @@ var StinkySystem = function() {
     toilet.postcreate();
     platforms.onFireHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
+    parkourInfo.create(hole);
 
     toilet.onFlushDown(function() {
       hole.playedAlready = true;
