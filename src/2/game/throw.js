@@ -4,16 +4,23 @@ var Throw = function() {
   var end = false;
   var stinkyLine;
   var offset;
+  var blocked = true;
 
   this.create = function() {
     stinkyLine = new StinkyLine();
   }
 
+  this.setBlocked = function(value) {
+    blocked = value;
+  }
+
   this.start = function(pointer, subjectPosition) {
-    start = subjectPosition;
-    offset = {
-      x: pointer.x - subjectPosition.x,
-      y: pointer.y - subjectPosition.y
+    if(!blocked) {
+      start = subjectPosition;
+      offset = {
+        x: pointer.x - subjectPosition.x,
+        y: pointer.y - subjectPosition.y
+      }
     }
   }
 

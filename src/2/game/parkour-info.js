@@ -2,9 +2,14 @@ var ParkourInfo = function() {
 
   var me = this;
   var thingsToToggle = [];
+  var onClose = false;
 
   const BG_WIDTH = 600;
   const BG_HEIGHT = 450;
+
+  this.onClose =function(func) {
+    onClose=func;
+  }
 
   this.preload = function() {
     game.load.image('bg', 'game/parkour-info-bg.png', BG_WIDTH, BG_HEIGHT);
@@ -102,5 +107,6 @@ var ParkourInfo = function() {
   var closeInfo = function() {
     var i = thingsToToggle.length;
     while (i--) thingsToToggle[i].alpha = 0;
+    onClose();
   }
 };

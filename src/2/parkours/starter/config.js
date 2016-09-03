@@ -26,7 +26,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -56,7 +56,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 50,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -95,14 +95,15 @@ var Starter = {
     par: 5
   }, {
     layerName: 'g',
-    name: 'Frogger',
+    name: 'frogger',
+    bgcolor: '#222',
     level: 4,
     stinky: {
       options: {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -127,6 +128,7 @@ var Starter = {
   }, {
     layerName: 'i',
     name: 'learn to fly',
+    bgcolor: '#00A',
     level: 12,
     stinky: {
       options: {
@@ -142,13 +144,14 @@ var Starter = {
   }, {
     layerName: 'j',
     name: 'over mountain',
+    bgcolor: '#A0A',
     level: 14,
     stinky: {
       options: {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -157,13 +160,14 @@ var Starter = {
   }, {
     layerName: 'k',
     name: 'beer',
+    bgcolor: '#AA0',
     level: 11,
     stinky: {
       options: {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -173,12 +177,13 @@ var Starter = {
     layerName: 'l',
     name: 'over boxes',
     level: 8,
+    bgcolor: '#0A0',
     stinky: {
       options: {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -193,7 +198,7 @@ var Starter = {
         bounce: 0.5,
         position: {
           x: 30,
-          y: 555
+          y: 560
         },
         gravity: 400
       }
@@ -208,7 +213,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 30,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -223,7 +228,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -238,7 +243,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }
@@ -253,7 +258,7 @@ var Starter = {
         bounce: 1,
         position: {
           x: 20,
-          y: 555
+          y: 560
         },
         gravity: 200
       }

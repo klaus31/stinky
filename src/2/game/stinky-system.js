@@ -68,8 +68,10 @@ var StinkySystem = function() {
     platforms.onFireHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
     parkourInfo.create(hole);
+    parkourInfo.onClose(function(){stinkyThrow.setBlocked(false);})
 
     toilet.onFlushDown(function() {
+      stinkyThrow.setBlocked(true);
       hole.playedAlready = true;
       game.state.start('Result');
     });
@@ -87,6 +89,7 @@ var StinkySystem = function() {
 
     if (!stinky.isBeingKilled()) {
       if (toilet.isHit(stinky).into()) {
+        stinkyThrow.setBlocked(true);
         stinky.markAsWillBeKilled();
         toilet.flushDown(stinky);
       } else if (toilet.isHit(stinky).any()) {
