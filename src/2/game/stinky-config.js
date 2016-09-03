@@ -69,7 +69,7 @@ var StinkyConfig = {
       level: 17,
       stinky: {
         options: {
-          bounce: 1,
+          bounce: 0.4,
           position: {
             x: 90,
             y: 395
@@ -145,8 +145,8 @@ var StinkyConfig = {
       name: 'over mountain',
       level: 14,
       stinky: {
-        bounce: 1,
         options: {
+          bounce: 1,
           position: {
             x: 10,
             y: 500
@@ -191,12 +191,12 @@ var StinkyConfig = {
       level: 15,
       stinky: {
         options: {
-          bounce: 1,
+          bounce: 0.5,
           position: {
             x: 30,
             y: 500
           },
-          gravity: 200
+          gravity: 400
         }
       },
       par: 5
@@ -267,12 +267,12 @@ var StinkyConfig = {
       bgcolor: '#000',
       stinky: {
         options: {
-          bounce: 1,
+          bounce: 0.8,
           position: {
             x: 60,
             y: 395
           },
-          gravity: 200
+          gravity: 50
         }
       },
       par: 10
