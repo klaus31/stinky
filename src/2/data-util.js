@@ -1,5 +1,3 @@
-var Data = {}; // TODO implement real persistence solution
-
 var DataUtil = {};
 
 DataUtil.PARKOUR_LENGTH = 18; // yes, every f**ing parkour is bound to 18 holes without any need \\_(OvO)_//

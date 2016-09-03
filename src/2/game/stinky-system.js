@@ -26,7 +26,7 @@ var StinkySystem = function() {
     if (hole.bgimage) {
       backgroundImage = 'bg-image';
       // TODO this is theme specific
-      game.load.image(backgroundImage, 'game/parkours/starter/' + hole.layerName + '.png');
+      game.load.image(backgroundImage, 'parkours/' + Data.parkour.name + '/' + hole.layerName + '.png');
     }
   };
 

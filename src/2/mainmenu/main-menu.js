@@ -44,7 +44,7 @@ var MainMenu = function() {
   }
 
   var startGameParkourLeft = function() {
-    startGame(StinkyConfig.parkours[0]);
+    startGame('starter');
   }
 
   this.update = function() {}
@@ -54,7 +54,14 @@ var MainMenu = function() {
     console.info('Please give money ...');
   }
 
-  var startGame = function(parkour) {
+  var startGame = function(parkourName) {
+    var i = Data.parkours.length;
+    var parkour;
+    while (i--) {
+      if (Data.parkours[i].name == parkourName) parkour = Data.parkours[i];
+    }
+
+    if (!parkour) throw 'parkour with name ' + parkourName + ' not known';
     flushShound.play();
     var ani = spriteParkourLeftCharflush.animations.play('parkourLeftCharflushA');
     ani.killOnComplete = true;
