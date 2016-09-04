@@ -7,8 +7,8 @@ var ParkourInfo = function() {
   const BG_WIDTH = 600;
   const BG_HEIGHT = 450;
 
-  this.onClose =function(func) {
-    onClose=func;
+  this.onClose = function(func) {
+    onClose = func;
   }
 
   this.preload = function() {

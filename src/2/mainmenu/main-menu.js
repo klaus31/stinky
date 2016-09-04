@@ -25,22 +25,26 @@ var MainMenu = function() {
       game.load.spritesheet('parkourRightCharToiletLidBuyButton', 'mainmenu/toilet-lid-99-ct.png', 115, 112);
     }
 
+    game.load.audio('toilet-flush', 'mainmenu/toilet-flush-2.mp3');
     preloadMenuForParkourLeft();
     preloadMenuForParkourRight();
-    game.load.audio('toilet-flush', 'mainmenu/toilet-flush-2.mp3');
+
   }
 
   this.create = function() {
-    game.add.sprite(0, 0, 'parkour-1');
-    game.add.sprite(game.world.width / 2, 0, 'parkour-2');
+    var innerCreate = function() {
+      game.add.sprite(0, 0, 'parkour-1');
+      game.add.sprite(game.world.width / 2, 0, 'parkour-2');
 
-    game.add.button(207, 71, 'parkour-1-buttons', startGameParkourLeft, game, 'hover', 'normal', 'down');
-    game.add.button(game.world.width / 2 + 220, 143, 'parkour-2-buttons', payFirst, game, 'hover', 'normal', 'down');
-    spriteParkourLeftCharflush = game.add.sprite(194, 397, 'parkourLeftCharflush');
-    spriteParkourLeftCharflush.animations.add('parkourLeftCharflushA', null, 5);
-    game.add.sprite(game.world.width / 10 * 7 - 5, 290, 'parkourRightCharToiletLidBuyButton');
+      game.add.button(207, 71, 'parkour-1-buttons', startGameParkourLeft, game, 'hover', 'normal', 'down');
+      game.add.button(game.world.width / 2 + 220, 143, 'parkour-2-buttons', payFirst, game, 'hover', 'normal', 'down');
+      spriteParkourLeftCharflush = game.add.sprite(194, 397, 'parkourLeftCharflush');
+      spriteParkourLeftCharflush.animations.add('parkourLeftCharflushA', null, 5);
+      game.add.sprite(game.world.width / 10 * 7 - 5, 290, 'parkourRightCharToiletLidBuyButton');
 
+    }
     flushShound = game.add.audio('toilet-flush');
+    game.sound.setDecodedCallback([flushShound], innerCreate, this);
   }
 
   var startGameParkourLeft = function() {

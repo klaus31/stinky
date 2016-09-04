@@ -68,7 +68,9 @@ var StinkySystem = function() {
     platforms.onFireHit(stinky.explode);
     platforms.onGreenHit(onGreenHit);
     parkourInfo.create(hole);
-    parkourInfo.onClose(function(){stinkyThrow.setBlocked(false);})
+    parkourInfo.onClose(function() {
+      stinkyThrow.setBlocked(false);
+    })
 
     toilet.onFlushDown(function() {
       stinkyThrow.setBlocked(true);

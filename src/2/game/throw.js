@@ -15,7 +15,7 @@ var Throw = function() {
   }
 
   this.start = function(pointer, subjectPosition) {
-    if(!blocked) {
+    if (!blocked) {
       start = subjectPosition;
       offset = {
         x: pointer.x - subjectPosition.x,
