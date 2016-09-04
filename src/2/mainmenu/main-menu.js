@@ -12,7 +12,7 @@ var MainMenu = function() {
       atlasBuilder.addFrame('hover', 74, 0, 74, 62);
       atlasBuilder.addFrame('down', 148, 0, 74, 62);
       game.load.atlas('parkour-1-buttons', 'mainmenu/parkour-1-buttons.png', null, atlasBuilder.build());
-      game.load.spritesheet('parkourLeftCharflush', 'mainmenu/parkour-1-charflush.png', 45, 50);
+      game.load.spritesheet('parkourLeftCharflush', 'mainmenu/parkour-poo-beginner.png', 120, 117);
     }
 
     var preloadMenuForParkourRight = function() {
@@ -36,7 +36,7 @@ var MainMenu = function() {
 
     game.add.button(207, 71, 'parkour-1-buttons', startGameParkourLeft, game, 'hover', 'normal', 'down');
     game.add.button(game.world.width / 2 + 220, 143, 'parkour-2-buttons', payFirst, game, 'hover', 'normal', 'down');
-    spriteParkourLeftCharflush = game.add.sprite(230, 440, 'parkourLeftCharflush');
+    spriteParkourLeftCharflush = game.add.sprite(194, 397, 'parkourLeftCharflush');
     spriteParkourLeftCharflush.animations.add('parkourLeftCharflushA', null, 5);
     game.add.sprite(game.world.width / 10 * 7 - 5, 290, 'parkourRightCharToiletLidBuyButton');
 
