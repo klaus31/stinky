@@ -44,7 +44,7 @@ var MainMenu = function() {
   }
 
   var startGameParkourLeft = function() {
-    startGame('starter');
+    startGame('beginner');
   }
 
   this.update = function() {}

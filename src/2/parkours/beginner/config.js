@@ -1,5 +1,5 @@
 var Starter = {
-  name: 'starter',
+  name: 'beginner',
   holes: [{
     layerName: 'c',
     name: 'four trees',
