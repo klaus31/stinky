@@ -72,9 +72,13 @@ var ParkourInfo = function() {
       var createListToShow = function() {
         var rows = [];
         rows.push(['Par', hole.par]);
-        rows.push(['Gravity', hole.stinky.options.gravity]);
-        var energy = Math.floor(hole.stinky.options.bounce * 100);
-        rows.push(['Bounce Energy', energy == 0 ? 'none' : energy + ' %']);
+
+        var gravity = hole.stinky.options.gravity ? (hole.stinky.options.gravity / 25).toFixed(2) + ' m/s²': 'none';
+        rows.push(['Gravity', gravity]);
+
+        var energy = hole.stinky.options.bounce ? Math.floor(hole.stinky.options.bounce * 100) + ' %' : 'none';
+        rows.push(['Bounce Energy', energy]);
+
         return rows;
       }
 

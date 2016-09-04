@@ -12,7 +12,7 @@ var Starter = {
           x: 138,
           y: 400
         },
-        gravity: 200
+        gravity: 250
       }
     },
     par: 5
@@ -116,12 +116,12 @@ var Starter = {
     bgcolor: '#002211',
     stinky: {
       options: {
-        bounce: 1,
+        bounce: 2,
         position: {
           x: 850,
           y: 50
         },
-        gravity: 200
+        gravity: 500
       }
     },
     par: 3
@@ -193,17 +193,18 @@ var Starter = {
     layerName: 'm',
     name: 'spider shit 2',
     level: 15,
+    bgcolor: '#330',
     stinky: {
       options: {
         bounce: 0.5,
         position: {
           x: 30,
-          y: 560
+          y: 540
         },
         gravity: 400
       }
     },
-    par: 5
+    par: 3
   }, {
     layerName: 'n',
     name: 'spider shit 1',
