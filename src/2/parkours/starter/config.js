@@ -224,6 +224,7 @@ var Starter = {
     layerName: 'o',
     name: 'storm',
     level: 10,
+    bgimage: true,
     stinky: {
       options: {
         bounce: 1,
