@@ -34,7 +34,7 @@ var Starter = {
     par: 2
   }, {
     layerName: 'b',
-    name: 'house + man',
+    name: 'ping pong',
     level: 2,
     stinky: {
       options: {
@@ -46,7 +46,7 @@ var Starter = {
         gravity: 0
       }
     },
-    par: 5
+    par: 2
   }, {
     layerName: 'd',
     name: 'snake',
@@ -96,7 +96,7 @@ var Starter = {
   }, {
     layerName: 'g',
     name: 'frogger',
-    bgcolor: '#222',
+    bgimage: true,
     level: 4,
     stinky: {
       options: {
@@ -164,7 +164,7 @@ var Starter = {
     level: 11,
     stinky: {
       options: {
-        bounce: 1,
+        bounce: 0,
         position: {
           x: 20,
           y: 560
@@ -180,7 +180,7 @@ var Starter = {
     bgcolor: '#0A0',
     stinky: {
       options: {
-        bounce: 1,
+        bounce: 0,
         position: {
           x: 20,
           y: 560
@@ -208,20 +208,21 @@ var Starter = {
     layerName: 'n',
     name: 'spider shit 1',
     level: 3,
+    bgimage: true,
     stinky: {
       options: {
-        bounce: 1,
+        bounce: 0,
         position: {
           x: 30,
           y: 560
         },
-        gravity: 200
+        gravity: 400
       }
     },
     par: 3
   }, {
     layerName: 'o',
-    name: 'shower 1',
+    name: 'storm',
     level: 10,
     stinky: {
       options: {
@@ -236,7 +237,7 @@ var Starter = {
     par: 5
   }, {
     layerName: 'p',
-    name: 'shower 2',
+    name: 'confetti',
     level: 13,
     stinky: {
       options: {
@@ -245,25 +246,26 @@ var Starter = {
           x: 20,
           y: 560
         },
-        gravity: 200
+        gravity: 999
       }
     },
     par: 5
   }, {
     layerName: 'q',
-    name: 'needle',
+    name: 'trouble',
+    bgcolor: '#505',
     level: 5,
     stinky: {
       options: {
-        bounce: 1,
+        bounce: 0.4,
         position: {
-          x: 20,
+          x: 750,
           y: 560
         },
         gravity: 200
       }
     },
-    par: 2
+    par: 7
   }, {
     layerName: 'r',
     name: 'mole shit',
