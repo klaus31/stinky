@@ -15,15 +15,15 @@ var ParkourInfo = function() {
     game.load.image('bg', 'game/parkour-info-bg.png', BG_WIDTH, BG_HEIGHT);
 
     var atlasBuilder = new AtlasBuilder('ok-buttons', 300, 50);
-    atlasBuilder.addFrame('hover', 0, 0, 100, 50);
-    atlasBuilder.addFrame('down', 100, 0, 100, 50);
-    atlasBuilder.addFrame('normal', 200, 0, 100, 50);
+    atlasBuilder.addFrame('normal', 0, 0, 100, 50);
+    atlasBuilder.addFrame('hover', 100, 0, 100, 50);
+    atlasBuilder.addFrame('down', 200, 0, 100, 50);
     game.load.atlas('ok-buttons', 'game/ok-button.png', null, atlasBuilder.build());
 
     atlasBuilder = new AtlasBuilder('window-close-button', 50, 50);
-    atlasBuilder.addFrame('normal', 0, 0, 50, 50);
-    atlasBuilder.addFrame('hover', 50, 0, 50, 50);
-    atlasBuilder.addFrame('down', 100, 0, 50, 50);
+    atlasBuilder.addFrame('down', 0, 0, 50, 50);
+    atlasBuilder.addFrame('normal', 50, 0, 50, 50);
+    atlasBuilder.addFrame('hover', 100, 0, 50, 50);
     game.load.atlas('window-close-button', 'game/window-close-button.png', null, atlasBuilder.build());
   }
 
@@ -73,7 +73,8 @@ var ParkourInfo = function() {
         var rows = [];
         rows.push(['Par', hole.par]);
         rows.push(['Gravity', hole.stinky.options.gravity]);
-        rows.push(['Bounce Energy', Math.floor(hole.stinky.options.bounce * 100) + ' %']);
+        var energy = Math.floor(hole.stinky.options.bounce * 100);
+        rows.push(['Bounce Energy', energy == 0 ? 'none' : energy + ' %']);
         return rows;
       }
 

@@ -35,7 +35,7 @@ var Starter = {
   }, {
     layerName: 'b',
     name: 'ping pong',
-    level: 2,
+    level: 5,
     stinky: {
       options: {
         bounce: 1,
@@ -50,7 +50,7 @@ var Starter = {
   }, {
     layerName: 'd',
     name: 'snake',
-    level: 9,
+    level: 2,
     stinky: {
       options: {
         bounce: 1,
@@ -61,7 +61,7 @@ var Starter = {
         gravity: 200
       }
     },
-    par: 5
+    par: 2
   }, {
     layerName: 'e',
     name: 'labyrinth',
@@ -160,7 +160,7 @@ var Starter = {
   }, {
     layerName: 'k',
     name: 'beer',
-    bgcolor: '#AA0',
+    bgcolor: '#033',
     level: 11,
     stinky: {
       options: {
@@ -169,7 +169,7 @@ var Starter = {
           x: 20,
           y: 560
         },
-        gravity: 200
+        gravity: 300
       }
     },
     par: 5
@@ -180,12 +180,12 @@ var Starter = {
     bgcolor: '#0A0',
     stinky: {
       options: {
-        bounce: 0,
+        bounce: 0.5,
         position: {
           x: 20,
           y: 560
         },
-        gravity: 200
+        gravity: 800
       }
     },
     par: 4
@@ -254,7 +254,7 @@ var Starter = {
     layerName: 'q',
     name: 'trouble',
     bgcolor: '#505',
-    level: 5,
+    level: 9,
     stinky: {
       options: {
         bounce: 0.4,
